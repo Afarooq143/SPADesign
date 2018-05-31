@@ -1,0 +1,73 @@
+page-packages {
+    .header-tab {
+        background: color($colors, primary);
+        height: 55px;
+        position: relative;
+        ion-row {
+            align-items: center;
+            ion-col {
+                button {
+                    height: 3.8em;
+                } //padding-top: 20px;
+                color: color($colors, light);
+            }
+        }
+    }
+    ion-card {
+        margin: 0px !important;
+        padding: 0px !important;
+        width: 100% !important;
+        box-shadow: none;
+    }
+    ul{
+        list-style: none;
+        padding-left:8px;
+    }
+
+    li::before {
+         content: "● ";
+        color: color($colors, primary);
+      }
+      .button-footer {
+        position: fixed !important;
+        bottom: 0px !important;
+        padding: 0 !important;
+        margin: 0px !important;
+        width: 100%;
+        left: 0px;
+    }
+
+    .sub-heading{
+        background:color($colors, primary); 
+        color: color($colors, light);
+        p{
+            font-weight:bold; 
+            font-size:16px; 
+            padding:10px; 
+            color: color($colors, light);
+        }
+    }
+    .link{
+        font-weight:bold; 
+        font-size:14px;
+        color:color($colors, primary);
+    }
+
+    .accordion-card{
+        .card-header{
+            background-color: color($colors, primary);
+            color: color($colors, light);
+        }
+        .card-content{
+            padding: 0px, 14px;
+            max-height: 0px;
+         }
+    }
+   
+
+    .accordion{
+        background-color: color($colors, dim);
+    }
+
+   
+}

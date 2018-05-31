@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-row no-padding>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <button ion-button menuToggle>
+          <fa-icon name="bars" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+        </button>
+      </ion-col>
+      <ion-col no-padding text-center style="border-bottom:none;"><img src="assets/imgs/logo.svg" style="max-width:75%"/></ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="bell" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="shopping-cart" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-card no-padding style="margin: 0px; width: 100%;">
+    <ion-card-header padding-left padding-right>
+      <p padding-left padding-right style="font-weight:bold">Support Request</p>
+    </ion-card-header>
+    <ion-card-content padding-left padding-right>
+      <form >
+        <ion-list>
+          <ion-item class="border-bottom">
+            <ion-label floating>Category:</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Description</ion-label>
+            <ion-textarea rows="5" type="text"></ion-textarea>
+          </ion-item>
+          <ion-row    class="border-bottom" style="align-items:center">
+            <ion-col padding-left>
+              <ion-label>Type</ion-label>
+            </ion-col>
+            <ion-col>
+              <label>Request</label>
+            </ion-col>
+            <ion-col>
+              <ion-toggle checked="true"></ion-toggle>
+            </ion-col>
+            <ion-col padding-right>
+              <label>Problem</label>
+            </ion-col>
+          </ion-row>
+          <ion-row >
+            <ion-col>
+                <p wrap padding-left style="font-weight:bold">Does Technician have permission to enter the apartment</p>
+            </ion-col>          
+          </ion-row>
+          <ion-row padding-left padding-right class="border-bottom">
+              <ion-col>
+                  &nbsp;
+              </ion-col>
+            <ion-col>
+              <label>No</label>
+            </ion-col>
+            <ion-col>
+              <ion-toggle checked="true"></ion-toggle>
+            </ion-col>
+            <ion-col>
+              <label>Yes</label>
+            </ion-col>
+          </ion-row>
+          <ion-item  class="border-bottom">
+              <ion-label floating>Priority</ion-label>
+            <ion-select no-padding >
+                <!-- <ion-option>Select</ion-option> -->
+              <ion-option>Abc</ion-option>
+              <ion-option>Def</ion-option>
+              <ion-option>Dhij</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-row padding>
+            <ion-col padding></ion-col>
+          </ion-row>
+          <button class="button-footer" style="margin-left:0px !important;width:100%" ion-button block full large color="primary" >
+              Save & Continue
+            </button>
+        </ion-list>
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

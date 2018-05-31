@@ -1,0 +1,32 @@
+.popover-content{
+     background-color: color($colors, dim) !important;     
+    width: 90% !important;
+    top: 74px !important;
+    left: 28px !important;
+    transform-origin: right top 0px;
+}
+.popover-md{
+    top: -15px !important;
+}
+page-cartsummary {
+    height: 100%;
+    .cart-summary{
+        .toolbar-md,.toolbar-background-ios{
+            background-color: color($colors, dim) !important;       
+        }
+    }
+
+
+    ion-content{
+            background-color: color($colors, dim) !important;       
+    }
+    .scroll-content{
+        overflow-y: hidden !important;
+    }
+    .section{
+        border-bottom: 2px solid color($colors, dark);
+        .heading{
+            font-weight: bold;
+        }
+    }
+}

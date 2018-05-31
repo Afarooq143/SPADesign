@@ -1,0 +1,93 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Form Validations</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!-- <form class="areas-form" [formGroup]="areasForm" (ngSubmit)="onSubmit(areasForm.value)">
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <div *ngIf="areasForm.controls.name.hasError('required') && areasForm.controls.name.touched">Please enter the Name</div>
+
+    <div formArrayName="areas">
+      <ion-list *ngFor="let area of areasForm.controls.areas.controls; let i = index " formGroupName="{{i}}">
+        <ion-item>
+          <ion-label floating>Area Name</ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <div *ngIf="areasForm.get('areas').controls[i].name.hasError('required')">Please enter the area name</div>
+      
+
+        <ion-item>
+          <ion-label floating>Lat Long</ion-label>
+          <ion-input type="text" formControlName="latLong"></ion-input>
+        </ion-item>
+     
+        <ion-item>
+          <ion-label floating>Area Detail</ion-label>
+          <ion-input type="text" formControlName="details"></ion-input>
+        </ion-item>
+      
+      </ion-list>
+    </div>
+
+    <button ion-button [disabled]="!areasForm.invalid" color="primary">Submit</button>
+  </form>
+  <pre>{{ areasForm.value | json }}</pre> -->
+
+
+  <form [formGroup]="sampleForm" (ngSubmit)="onSubmit(sampleForm)">
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <div no-padding no-margin class="error-box" *ngIf="sampleForm.controls['name'].hasError('required') && sampleForm.controls['name'].touched">* The field is required!</div>
+    
+    <!-- <show-errors [control]="sampleForm.controls.name"></show-errors> -->
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <div no-padding no-margin class="error-box" *ngIf="sampleForm.controls['email'].hasError('required') && sampleForm.controls['email'].touched">* The field is required!</div>
+    <!-- <show-errors [control]="sampleForm.controls.email"></show-errors> -->
+
+    <ion-item>
+      <ion-label floating>Age</ion-label>
+      <ion-input type="text" formControlName="age"></ion-input>
+    </ion-item>
+    <div no-padding no-margin class="error-box" *ngIf="sampleForm.controls['age'].hasError('required') && sampleForm.controls['age'].touched">* The field is required!</div>
+    
+    <!-- <show-errors [control]="sampleForm.controls.age"></show-errors> -->
+
+    <div formGroupName="address">
+      <h3>Address</h3>
+      <ion-item>
+        <ion-label floating>Country</ion-label>
+        <ion-input type="text"  formControlName="country"></ion-input>
+      </ion-item>
+      <div no-padding no-margin class="error-box" *ngIf="sampleForm.controls.address.controls.country.hasError('required') && sampleForm.controls.address.controls.country.touched">* The field is required!</div>
+      <!-- <show-errors [control]="sampleForm.controls.address.controls.country"></show-errors> -->
+
+      <ion-item>
+        <ion-label floating>City</ion-label>
+        <ion-input type="text" name="city" formControlName="city"></ion-input>
+      </ion-item>
+      <div no-padding no-margin class="error-box" *ngIf="sampleForm.controls.address.controls.city.hasError('required') && sampleForm.controls.address.controls.city.touched">* The field is required!</div>
+      <!-- <show-errors [control]="sampleForm.controls.address.controls.city"></show-errors> -->
+    </div>
+
+    <pre>{{sampleForm.value | json}}</pre>
+    <button ion-button [disabled]='!sampleForm.valid'>Submit</button>
+
+
+    <!-- <button  ion-button (click)="onSubmit()">Print to console</button> -->
+
+  </form>
+</ion-content>

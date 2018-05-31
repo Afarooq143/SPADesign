@@ -1,0 +1,29 @@
+page-internet {
+    .heading {
+        padding: 5px !important;
+        background: color($colors, dim) !important;
+        font-weight: bold;
+    }
+    .scroll-content {
+        background-color: map-get($colors, light);
+    }
+    ion-card-header {
+        font-weight: bold;
+    }
+    .internetSpeed{
+        border-radius: 100%;
+        width: 50%;
+        height: 130px;
+        margin: 0 auto;
+        border-top: 14px solid color($colors, primary);
+        border-right: 14px solid color($colors, primary);
+        border-left: 14px solid color($colors, primary);
+        border-bottom: 14px solid #fff;
+        p{
+            padding-top:15%;
+            font-weight:bold;
+            font-style: italic;
+            font-size:22px;
+        }
+    }
+}

@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-row no-padding>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <button ion-button menuToggle>
+          <fa-icon name="bars" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+        </button>
+      </ion-col>
+      <ion-col no-padding text-center style="border-bottom:none;">
+        <img src="assets/imgs/logo.svg" style="max-width:75%" />
+      </ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="bell" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="shopping-cart" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+    <ion-card-header class="heading">
+      Community WiFi
+    </ion-card-header>
+    <ion-card-content padding>
+      <ion-row no-padding>
+        <ion-col style="font-weight:bold">Devices</ion-col>
+        <ion-col style="font-weight:bold">Status</ion-col>
+      </ion-row>
+      <ion-row no-padding>
+        <ion-col>Iphone or smartphone</ion-col>
+        <ion-col>
+          <ion-badge color="secondary">Connected</ion-badge>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding>
+        <ion-col>Ipad or tablet</ion-col>
+        <ion-col>
+          <ion-badge color="secondary">Connected</ion-badge>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding>
+        <ion-col>Laptop 1</ion-col>
+        <ion-col>
+          <ion-badge color="secondary">Connected</ion-badge>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+    <ion-row padding>
+      <ion-col>
+        <button clear style="color:blue; background:white;">Add Device</button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header class="heading">
+      Bandwidth Usage
+    </ion-card-header>
+    <ion-card-content padding>
+      <img src="assets/imgs/chart.PNG">
+    </ion-card-content>
+    <ion-row padding>
+      <ion-col>
+        <button clear style="color:blue; background:white;">Hourly</button>
+      </ion-col>
+      <ion-col>
+        <button clear style="color:blue; background:white;">Weekly</button>
+      </ion-col>
+      <ion-col>
+        <button clear style="color:blue; background:white;">Monthly</button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,180 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-row no-padding>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <button ion-button menuToggle>
+          <fa-icon name="bars" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+        </button>
+      </ion-col>
+      <ion-col no-padding text-center style="border-bottom:none;"><img src="assets/imgs/logo.svg" style="max-width:75%"/></ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="bell" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="shopping-cart" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <!-- <ion-header class="header-tab" no-padding>
+      <ion-row style="width:100%; height:100%; vertical-align:middle;">
+        <ion-col col-1 padding-left padding-right>
+          <fa-icon name="dribbble" class="fa-2x"></fa-icon>
+        </ion-col>
+        <ion-col col-2>
+          <fa-icon name="desktop" class="fa-2x"></fa-icon>
+        </ion-col>
+        <ion-col col-5>Packages
+          <p no-padding wrap style="font-size:10px;">Internet + TV Services</p>
+        </ion-col>
+        <ion-col>
+          <fa-icon name="caret-down" class="fa-2x" style="float:right"></fa-icon>
+        </ion-col>
+      </ion-row>
+  </ion-header> -->
+  <ion-card margin-top class="accordion-card">
+      <ion-card-header no-padding>
+        <ion-row style="width:100%; height:100%; vertical-align:middle;">
+          <ion-col col-2 padding-left padding-right>
+            <fa-icon name="dribbble" color="light" class="fa-2x"></fa-icon>
+          </ion-col>
+          <ion-col col-2>
+            <fa-icon name="desktop" color="light" class="fa-2x"></fa-icon>
+          </ion-col>
+          <ion-col col-5>Packages
+            <p no-padding no-margin wrap style="font-size:10px;color:#fff;">Internet + TV Services</p>
+          </ion-col>
+          <ion-col (click)="toggleAccordion()">
+            <fa-icon name="caret-down" color="light" class="fa-2x" style="float:right"></fa-icon>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+  
+      <ion-card-content #cc no-padding class="accordion">
+        <ion-row   style="width:100%; height:100%; vertical-align:middle;">
+          <ion-col text-center col-4>
+            <fa-icon name="desktop" color="primary" class="fa-2x"></fa-icon>
+          </ion-col>
+          <ion-col col-5>Receivers
+            <p no-padding no-margin wrap style="font-size:10px;">HD and DVR Receivers</p>
+          </ion-col>
+        </ion-row>
+        <ion-row style="width:100%; height:100%; vertical-align:middle;">
+          <ion-col text-center col-4>
+            <fa-icon name="desktop" color="primary" class="fa-2x"></fa-icon>
+            <fa-icon name="arrow-up" color="primary" class="fa-2x"></fa-icon>
+          </ion-col>
+          <ion-col col-5>Programming
+            <p no-padding no-margin wrap style="font-size:10px;">Upgrade your TV Channel Package</p>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row style="width:100%; height:100%; vertical-align:middle;">
+          <ion-col text-center col-4>
+            <fa-icon name="desktop" color="primary" class="fa-2x"></fa-icon>
+          </ion-col>
+          <ion-col col-5>Premiums HBO, CINEMAX
+            <p no-padding no-margin wrap style="font-size:10px;">Showtime, and more</p>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row style="width:100%; height:100%; vertical-align:middle;">
+          <ion-col text-center col-4>
+            <fa-icon name="globe" color="primary" class="fa-2x"></fa-icon>
+          </ion-col>
+          <ion-col col-5>Internationals
+            <p no-padding no-margin wrap style="font-size:10px;">Get Channels from different countries</p>
+          </ion-col>
+        </ion-row>
+        <ion-row style="width:100%; height:100%; vertical-align:middle;">
+          <ion-col text-center col-4>
+            <fa-icon name="mobile" color="primary"  class="fa-2x"></fa-icon>
+          </ion-col>
+          <ion-col col-5>Store
+            <p no-padding no-margin wrap style="font-size:10px;">Routers, Phones, Plans, etc</p>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+ <ion-row>
+   <ion-col>&nbsp;</ion-col>
+ </ion-row>
+
+  <div class="section" style="margin-bottom:10px;">
+    <ion-card padding >
+      <ion-card-header padding>
+        <p>Cedar Village Base Package
+          <fa-icon color="primary" name="question-circle" ></fa-icon>
+        </p>
+      </ion-card-header>
+      <ion-card-content padding-left padding-right >
+        <ion-row >
+          <ion-col text-center>
+            <img src="assets/imgs/speed.png" style="height: 70%;
+            width: 60%;"/>
+          </ion-col>
+          <ion-col>
+            <img src="assets/imgs/directv-img.png" style="height: 90%;
+            width: 100%;"/>
+          </ion-col>
+        </ion-row>
+        <ion-row >
+          <ion-col no-padding><p style="font-weight:bold; font-size:20px;"> $80.00/mo</p> </ion-col>
+          <ion-col no-padding > <button ion-button small style="float:right" color="warning">Select</button> </ion-col>
+        </ion-row>
+        <ion-row ><p class="link" style="">Over $75 Savings compared to cable!</p></ion-row>
+        <ion-row><p style="font-weight:bold;"><fa-icon color="primary" name="dribbble" ></fa-icon> Fiber Internet + <fa-icon color="primary" name="dribbble" ></fa-icon> DIRECTV + <fa-icon name="dribbble" color="primary"></fa-icon> App</p></ion-row>
+        <ion-row no-padding  class="sub-heading">
+          <ion-col no-padding><p><fa-icon name="dribbble" color="light"></fa-icon> Fiber Internet</p></ion-col>
+        </ion-row>
+        <ion-row no-padding>
+           <ul >
+             <li>Speed upto 1 Gbps (1,000 Mbps)</li>
+             <li>Wifi Service in your community</li>
+             <li>Direct Connection to Netflix, Hulu and more</li>
+             <li>No bandwidth caps</li>
+             <li>Ultra low latency for gaming</li>
+             <li>No bandwidth caps</li>            
+           </ul>
+        </ion-row>
+        <ion-row class="sub-heading" no-padding>
+            <ion-col no-padding>
+              <p><fa-icon name="dribbble" color="light"></fa-icon> DIRECTV</p>
+            </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+            <ul>
+              <li>DIRECTV Choice package</li>
+              <li>Over 170 digital channels</li>
+              <li>Big Ten Network, Bravo, Comedy Central and more</li>
+              <li>Equipment discounts for new DIRECTV customers</li>
+              <li>Whole Home DVR, HD, 4K upgrades available.</li>         
+            </ul>
+        </ion-row>
+
+        <ion-row class="sub-heading" no-padding>
+            <ion-col no-padding><p><ion-badge color="warning">Bonous</ion-badge> DIRECTV APP &  Community Wifi Free</p></ion-col>
+        </ion-row>
+        <ion-row no-padding>
+            <ul>
+              <li>Watch DIRECTV from your Mobile devices </li>
+              <li>Watch thousnads of your favourite movies</li>
+              <li>Stram and Download your home DVR</li>
+              <li>Just add your devices and instantly connect</li>
+              <li>Consistent blazing fast internet at-home and on-th-go</li>  
+              <li>No equipment needed</li>       
+            </ul>
+        </ion-row>
+        <button class="button-footer" style="margin-left:0px !important;width:100%" ion-button block full large color="primary" >
+            Save & Continue
+          </button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  
+</ion-content>

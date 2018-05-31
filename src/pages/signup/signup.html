@@ -1,0 +1,154 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-row no-padding>
+      <!-- <ion-col col-2 no-padding style="border-bottom:none">
+          <button ion-button menuToggle>
+            <fa-icon name="bars" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+          </button>
+        </ion-col> -->
+      <ion-col col-2 padding-left padding-top style="border-bottom:none" (click)="goBack();">
+        <fa-icon name="chevron-left" color="dark" class="fa-2x"></fa-icon>
+      </ion-col>
+      <ion-col no-padding style="border-bottom:none;">
+        <img src="assets/imgs/logo.svg" style="height: 43px;" />
+      </ion-col>
+      <!-- <ion-col col-2 no-padding style="border-bottom:none">
+          <fa-icon name="bell" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+        </ion-col>
+        <ion-col col-2 no-padding style="border-bottom:none">
+          <fa-icon name="shopping-cart" color="primary" style="font-size: 25px; padding-top: 16px;" (click)="presentPopover($event)"></fa-icon>
+        </ion-col> -->
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card no-padding no-margin width-100 class="form-card">
+    <ion-card-header text-center no-padding padding-top no-marging>
+      <p style="font-weight:bold;">Sign Up</p>
+    </ion-card-header>
+    <ion-card-content no-padding-top>
+      <form [formGroup]="signupForm" style="padding-top:0px;">
+        <ion-item no-padding>
+          <ion-label floating>First Name</ion-label>
+          <!-- <button ion-button clear medium  item-left>
+              <fa-icon name="user" class="fa-2x"></fa-icon>
+            </button> -->
+          <ion-input type="text" [formControl]="signupForm.controls['first_name']" [ngClass]="{'error-border':!signupForm.controls['first_name'].valid}"
+            [(ngModel)]="userData.first_name"></ion-input>
+        </ion-item>
+        <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['first_name'].hasError('required') && signupForm.controls['first_name'].touched">* The field is required!</div>
+        <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['first_name'].hasError('minlength') && signupForm.controls['first_name'].touched">* Minimum name length is 5!</div>
+
+
+        <ion-item>
+          <!-- <button ion-button clear  item-left>
+              <fa-icon name="user" class="fa-2x"></fa-icon>
+            </button> -->
+          <ion-label floating>Last Name</ion-label>
+          <ion-input type="text" [formControl]="signupForm.controls['last_name']" [ngClass]="{'error-border':!signupForm.controls['last_name'].valid}"
+            [(ngModel)]="userData.last_name"></ion-input>
+        </ion-item>
+        <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['last_name'].hasError('required') && signupForm.controls['last_name'].touched">* The field is required!</div>
+        <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['last_name'].hasError('minlength') && signupForm.controls['last_name'].touched">* Minimum name length is 5!</div>
+
+
+        <ion-item no-padding>
+          <!-- <button no-padding ion-button clear  item-left>
+              <fa-icon name="envelope" class="fa-2x"></fa-icon>
+            </button> -->
+          <ion-label floating>Email</ion-label>
+          <ion-input type="email" [formControl]="signupForm.controls['email']" [ngClass]="{'error-border':!signupForm.controls['email'].valid}"
+            [(ngModel)]="userData.email"></ion-input>
+        </ion-item>
+        <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['email'].hasError('required') && signupForm.controls['email'].touched">* The field is required!</div>
+        <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['email'].hasError('pattern') && signupForm.controls['email'].touched">* Invalid email id!</div>
+        <ion-item no-padding>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" [formControl]="signupForm.controls['password']" [ngClass]="{'error-border':!signupForm.controls['password'].valid}"
+            [(ngModel)]="userData.password"></ion-input>
+        </ion-item>
+        <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['password'].hasError('required') && signupForm.controls['password'].touched">* The field is required!</div>
+        <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['password'].hasError('minlength') && signupForm.controls['password'].touched">* Minimum password length is 8!</div>
+
+
+
+        <ion-item no-padding>
+          <ion-label floating>Password Confirmation</ion-label>
+          <ion-input type="password" [formControl]="signupForm.controls['password_confirmation']" [ngClass]="{'error-border':!signupForm.controls['password_confirmation'].valid}"
+            [(ngModel)]="userData.password_confirmation"></ion-input>
+        </ion-item>
+        <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['password_confirmation'].hasError('required') && signupForm.controls['password_confirmation'].touched">* The field is required!</div>
+        <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['password_confirmation'].hasError('equalTo')" class="validator-error">* Passwords don not match</div>
+
+        <ion-item no-padding>
+          <ion-label floating>Location</ion-label>
+          <ion-select #loc style="width: 100% !important;" [formControl]="signupForm.controls['location_type']" [ngClass]="{'error-border':!signupForm.controls['location_type'].valid}"
+            [(ngModel)]="userData.location_type" interface="popover" class="select select-md ng-valid ng-dirty ng-touched"
+            (ionChange)="setLocation(loc.value)">
+            <ion-option value="apartment">Apartment</ion-option>
+            <ion-option value="house_owned">House Owned</ion-option>
+            <ion-option value="house_rented">House Rented</ion-option>
+            <ion-option value="condo">Condo</ion-option>
+          </ion-select>
+        </ion-item>
+        <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['location_type'].hasError('required') && signupForm.controls['location_type'].touched">* The field is required</div>
+
+        <div style="position: relative;" *ngIf="apartmentSelected==true">
+          <ion-item no-padding>
+            <ion-label floating>Community Name</ion-label>
+            <ion-input name="apartment_name" [formControl]="signupForm.controls['autoSearchValue']" [(ngModel)]="autoSearchValue" #apartmentName
+              (keyup)="getCommunity(apartmentName.value)"></ion-input>
+
+          </ion-item>
+          <ul class="autosearch" *ngIf="autoSearch==true">
+            <li *ngFor="let data of autocompleteData" (click)="selectData(data)">
+              <img class="autosearch-img" src="https://www-myaccountonboarding.spartan-net.com/images/community_images/medium/numeric/{{ data.id }}.jpg"
+              /> {{ data.community_name }} {{ data.city }}, {{ data.state }}</li>
+          </ul>
+        </div>
+
+        <div style="position: relative;" *ngIf="streetSelected==true">
+          <ion-item no-padding>
+            <ion-label floating>Street Address</ion-label>
+            <ion-input name="street_address" [formControl]="signupForm.controls['streetSearchValue']" [(ngModel)]="streetSearchValue"
+              #streetName (keyup)="getStreet(streetName.value)"></ion-input>
+
+          </ion-item>
+          <!-- <ul class="autosearch">
+            <li *ngFor="let data of autocompleteData" (click)="selectData(data)">
+              <img class="autosearch-img" src="https://www-myaccountonboarding.spartan-net.com/images/community_images/medium/numeric/{{ data.id }}.jpg"
+              /> {{ data.community_name }} {{ data.city }}, {{ data.state }}</li>
+          </ul> -->
+        </div>
+
+        <ion-item no-padding>
+          <ion-label floating>Date of Birth</ion-label>
+          <ion-input [formControl]="signupForm.controls['date_of_birth']" [(ngModel)]="date_of_birth" (click)="showCalendar()" 
+            [ngClass]="{'error-border':!signupForm.controls['date_of_birth'].valid}"></ion-input>
+        </ion-item>
+        <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['date_of_birth'].hasError('required') && signupForm.controls['date_of_birth'].touched">* The field is required!</div>
+        <!-- <div no-padding no-margin class="error-box" *ngIf="signupForm.controls['date_of_birth'].hasError('notadult') && signupForm.controls['date_of_birth'].touched">* Minimum age should be 18 above!</div> -->
+
+        <ion-row no-padding>
+          <ion-col text-center class="sign-in-button-container">
+            <button ion-button small no-padding no-margin clear (click)="goLogin()">
+              Already have an account? Login Here
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+          <ion-col text-center>
+            <span>SMS will be sent for account verifications</span>
+          </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+          <ion-col text-center>
+            <button ion-button block color="secondary" [disabled]="!signupForm.valid" (click)="onSignInOne()">
+              Continue
+            </button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

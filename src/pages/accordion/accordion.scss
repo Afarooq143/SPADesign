@@ -1,0 +1,131 @@
+page-accordion {
+    // .menu-header{
+    //     margin-top:5px;
+    // }
+    .menu {
+        background: color($colors, dim);
+        fa-icon {
+            color: color($colors, primary);
+        }
+        p {
+            font-size: 10px;
+        }
+    }
+    .accordion {
+        background-color: color($colors, dim);
+    }
+    .active {
+        background: color($colors, primary) !important;
+        fa-icon {
+            color: color($colors, light);
+        }
+        p {
+            color: color($colors, light);
+        }
+    }
+    .internetSpeed {
+        border-radius: 100%; // width: 50%;
+        height: 130px;
+        margin: 0 auto;
+        border-top: 14px solid color($colors, primary);
+        border-right: 14px solid color($colors, primary);
+        border-left: 14px solid color($colors, primary);
+        border-bottom: 14px solid #fff;
+        p {
+            padding-top: 15%;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 22px;
+        }
+    }
+   
+    .button-footer {
+        position: fixed !important;
+        bottom: 0px !important;
+        padding: 0 !important;
+        margin: 0px !important;
+        width: 100%;
+        left: 0px;
+        z-index: 99;
+    }
+    .link {
+        color: color($colors, primary);
+        font-weight: bold;
+    }
+    ul {
+        list-style: none;
+        padding-left: 8px;
+    }
+    li::before {
+        //  content: "● ";
+        content: "☛ ";
+        color: color($colors, primary);
+        font-size: 20px;
+    }
+    .button-footer {
+        position: fixed !important;
+        bottom: 0px !important;
+        padding: 0 !important;
+        margin: 0px !important;
+        width: 100%;
+        left: 0px;
+    }
+    .swiper-slide {
+        text-align: left !important;
+    }
+
+   
+    .list-package::before {
+        display: none !important;
+    }
+
+    // #slider::after{
+    //     content: "►";
+    //     position: absolute;
+    //     right: 0px;
+    //     z-index: 99;
+    //     top: 260px;
+    //     font-size: 70px;
+    //     color:color($colors, dim);
+    // }
+
+    // .label-ios{
+    //     margin: 0px 0px 10px 10px;
+    // }
+
+    .channel-list{
+        .col{
+           padding:0px !important;
+        }
+    }
+
+    .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+        top: 0;
+        bottom: initial;
+       // padding: 10px;
+    }
+
+    signature-pad {
+        canvas {
+          border: dashed 1px #cccccc;
+          width: 100%; height: 80px;
+        }
+    }
+
+
+
+    .leftSlide{
+        position: absolute;
+        z-index: 9999999;
+        width: 30px;
+        top: 100%;
+    }
+
+    .rightSlide{
+        position: absolute;
+        z-index: 9999999;
+        width: 30px;
+        top: 100%;
+        left:90%;
+    }
+}

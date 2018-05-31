@@ -1,0 +1,96 @@
+// .form-card {
+//     box-shadow: none;
+//     margin: 0px !important;
+//     width: 100%;
+//     border-radius: 0px !important;
+//     padding: 0px;
+// }
+// .custom-login-label input[type] {
+//     margin-left: 20px;
+// }
+// .custom-login-label i {
+//     position: absolute;
+//     bottom: 12px;
+// }
+// .scroll-content {
+//     padding: 0px !important;
+// }
+// ion-input,
+// ion-item {
+//     padding: 0px !important;
+//     margin: 0px !important;
+// }
+// ion-item {
+//     border-bottom: 1px solid color($colors, primary) !important;
+// }
+// .validator-error {
+//     color: color($colors, danger);
+//     padding-top: 8px;
+//     padding-left: 16px;
+// }
+page-signup {
+    .form-card {
+        box-shadow: none;
+        margin: 0px !important;
+        width: 100%;
+        border-radius: 0px !important;
+        padding: 0px; // background: linear-gradient(color($colors, gradient1), color($colors, gradient2));
+        // -webkit-background-size: cover;
+        // -moz-background-size: cover;
+        // background-size: cover;
+    } // ion-item, div{
+    //     background:none !important;
+    // }
+    // fa-icon, ion-label{
+    //     color: color($colors, light);
+    // }
+    .custom-login-label input[type] {
+        margin-left: 20px;
+    }
+    .custom-login-label i {
+        position: absolute;
+        bottom: 12px;
+    }
+    .scroll-content {
+        padding: 0px !important;
+    }
+    ion-input,
+    ion-item {
+        padding: 0px !important;
+        margin: 0px !important;
+    }
+    ion-item {
+        border-bottom: 2px solid color($colors, primary) !important;
+    }
+    .autosearch {
+        list-style: none;
+        background: color($colors, dim);
+        padding: 0px;
+        margin-top: 0px;
+        position: absolute;
+        width: 95%;
+        z-index: 9;
+        margin-left: 5%
+    }
+    li {
+        padding: 10px 12px;
+        border-bottom: 1px solid color($colors, dark);
+        ;
+        color: color($colors, primary);
+    }
+    .autosearch-img {
+        height: 27%;
+        width: 22%;
+        float: left;
+        padding: 0px;
+        margin: 0px;
+        display: inline-block;
+        clear: both;
+        margin-right: 15px;
+        border-radius: 35%;
+    }
+
+    // .error-border{
+    //     border-bottom: 2px solid color($colors, danger);
+    // }
+}

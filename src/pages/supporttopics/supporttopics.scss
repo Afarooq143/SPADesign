@@ -1,0 +1,33 @@
+page-supporttopics {
+    .scroll-content{
+        margin-top: 85px;
+    }
+
+    .active{
+        background: color($colors, primary);
+        fa-icon{
+            color: color($colors, light);
+        }
+    }
+    .active:after,
+    .active::after {
+        
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -20%;
+        content: '';
+        width: 0;
+        height: 0;
+        border-top: solid 15px color($colors, primary);
+        border-left: solid 15px transparent;
+        border-right: solid 15px transparent;
+    }
+
+    ion-item{
+        color: color($colors, primary);
+        button{
+            text-transform: none !important;
+        }
+    }
+}

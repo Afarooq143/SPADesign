@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-row no-padding>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <button ion-button menuToggle>
+          <fa-icon name="bars" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+        </button>
+      </ion-col>
+      <ion-col no-padding text-center style="border-bottom:none;"><img src="assets/imgs/logo.svg" style="max-width:75%"/></ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="bell" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="shopping-cart" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-card no-padding style="margin: 0px; width: 100%;box-shadow:none;">
+    <ion-card-header padding-left padding-right>
+      <p padding-left padding-right style="font-weight:bold">Support Request</p>
+    </ion-card-header>
+    <ion-card-content padding-left padding-right>
+      <div>
+        <ion-row style="align-items:center" padding-left padding-right>
+          <ion-col>
+            <p style="font-weight:bold;color:rgb(100, 126, 240); vertical-align:middle">
+              <fa-icon name="user-circle" class="fa-2x" color="dark"></fa-icon>
+              #8718
+            </p>
+          </ion-col>
+          <ion-col>Internet</ion-col>
+          <ion-col col-2>
+            <fa-icon name="user-circle-o" class="fa-2x" color="dark"></fa-icon>
+          </ion-col>
+          <ion-col col-2>
+            <fa-icon name="comments" class="fa-2x" color="dark"></fa-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row padding-left padding-right>
+          <ion-col>
+            <ion-badge color="secondary">Active</ion-badge>
+          </ion-col>
+        </ion-row>
+        <ion-card padding style="margin: 0px; width: 100%;box-shadow:none;background:#e4e4e4">
+          <ion-card-header no-padding>
+            <ion-row no-padding>
+              <p>
+                <fa-icon name="user-circle-o" class="fa-2x" color="dark"></fa-icon>
+                System User
+              </p>
+            </ion-row>
+            <ion-row padding-top padding-bottom>
+              <div class="row">
+                <p style="font-weight:bold;">Detail Update:</p>
+                <p padding-left>11:40am 10-18-2018</p>
+              </div>
+            </ion-row>
+          </ion-card-header>
+          <ion-card-content no-padding text-justify>
+             <p> Customer called in and stated
+              that he is unable to connect to
+              the internet through his phone. I
+              had him turn the Wifi off and then
+              back on again. Still no connection. His new phone was not registered on his accoutn. He will
+              add it and then call back if he has
+              any issues.</p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

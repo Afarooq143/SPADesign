@@ -1,0 +1,180 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-row no-padding>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <button ion-button menuToggle>
+          <fa-icon name="bars" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+        </button>
+      </ion-col>
+      <ion-col no-padding text-center style="border-bottom:none;"><img src="assets/imgs/logo.svg" style="max-width:75%"/></ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="bell" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="shopping-cart" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- <div class="row"> -->
+  <ion-row style="background:#e4e4e4" text-center>
+    <ion-col [class.active]="internet" [ngClass]="{'active': selected == internet}">
+      <button style="width:100%;height:100%;background:none;" (click)="menu('internet');">
+        <fa-icon name="dribbble" color="primary" class="fa-2x"></fa-icon>
+        <p style="margin-bottom: 0px;">Fiber Internet</p>
+      </button>
+    </ion-col>
+    <ion-col [ngClass]="{active: isActive('wifi')}">
+      <button style="width:100%;height:100%;background:none;" (click)="menu('wifi')">
+        <fa-icon name="wifi" color="primary" class="fa-2x"></fa-icon>
+        <p style="margin-bottom: 0px;">WiFi</p>
+      </button>
+    </ion-col>
+    <ion-col [ngClass]="{active: isActive('tv')}">
+      <button style="width:100%;height:100%; background:none;" (click)="menu('tv')">
+        <fa-icon name="desktop" color="primary" class="fa-2x"></fa-icon>
+        <p style=" margin-bottom: 0px;">TV</p>
+      </button>
+    </ion-col>
+    <ion-col [ngClass]="{active: isActive('myaccount')}">
+      <button style="width:100%;height:100%; background:none;" (click)="menu('myaccount')">
+        <fa-icon name="user" color="primary" class="fa-2x"></fa-icon>
+        <p style=" margin-bottom: 0px;">My Account</p>
+      </button>
+    </ion-col>
+  </ion-row>
+
+
+  <div class="row section" *ngIf="internet==true">
+    <ion-card no-padding style="margin: 0px; width: 100%;box-shadow:none;">
+      <ion-card-header padding-left padding-right>
+        <p padding-left padding-right style="font-weight:bold">How Can We Help !</p>
+      </ion-card-header>
+      <ion-card-content padding-left padding-right>
+          <ion-list no-lines   padding-left padding-right>
+            <ion-item no-padding no-margin>
+            <button ion-button small no-padding no-margin clear >
+              Subscribe
+            </button>
+          </ion-item>
+          <ion-item no-padding no-margin>
+            <button ion-button small no-padding no-margin clear>How to connect to the Internet</button>
+          </ion-item>
+          <ion-item no-padding no-margin>
+            <button ion-button small no-padding no-margin clear>Community WiFi</button>
+          </ion-item>
+          <ion-item no-padding no-margin>
+            <button ion-button small no-padding no-margin clear>Roommate Access</button>
+          </ion-item>
+          <ion-item no-padding no-margin>
+            <button ion-button small no-padding no-margin clear>Optimize Speed</button>
+          </ion-item>
+          <ion-item no-padding no-margin>
+            <button ion-button small no-padding no-margin clear>Internet Connection Problem</button>
+          </ion-item>
+          <ion-item no-padding no-margin>
+            <button ion-button small no-padding no-margin clear>Gaming Support</button>
+          </ion-item>
+
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div class="row section" *ngIf="wifi==true">
+      <ion-card no-padding style="margin: 0px; width: 100%;box-shadow:none;">
+          <ion-card-header padding-left padding-right>
+            <p padding-left padding-right style="font-weight:bold">How Can We Help !</p>
+          </ion-card-header>
+          <ion-card-content padding-left padding-right>
+            <ion-list no-lines   no-padding>
+              <ion-item  padding-left padding-right>
+                <button ion-button small no-padding no-margin clear >
+                  Subscribe
+                </button>
+              </ion-item>
+              <ion-item padding-left padding-right>
+                <button ion-button small no-padding no-margin clear>How to connect to the WiFi</button>
+              </ion-item>
+              <ion-item padding-left padding-right>
+                <button ion-button small no-padding no-margin clear>Community WiFi</button>
+              </ion-item>
+              <ion-item padding-left padding-right>
+                <button ion-button small no-padding no-margin clear>Roommate Access</button>
+              </ion-item>
+              <ion-item padding-left padding-right>
+                <button ion-button small no-padding no-margin clear>Optimize Speed</button>
+              </ion-item>
+              <ion-item padding-left padding-right>
+                <button ion-button small no-padding no-margin clear>WiFi Connection Problem</button>
+              </ion-item>
+              <ion-item padding-left padding-right>
+                <button ion-button small no-padding no-margin clear>Gaming Support</button>
+              </ion-item>
+    
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+  </div>
+  <div class="row section" *ngIf="tv==true">
+      <ion-card no-padding style="margin: 0px; width: 100%;box-shadow:none;">
+          <ion-card-header padding-left padding-right>
+            <p padding-left padding-right style="font-weight:bold">How Can We Help !</p>
+          </ion-card-header>
+          <ion-card-content padding-left padding-right>
+            <ion-list no-lines   padding-left padding-right>
+              <ion-item no-padding>
+                <button ion-button small no-padding no-margin clear >
+                  Subscribe
+                </button>
+              </ion-item>
+              <ion-item no-padding>
+                <button ion-button small no-padding no-margin clear>How to connect to the TV</button>
+              </ion-item>
+              
+              <ion-item no-padding>
+                <button ion-button small no-padding no-margin clear>Roommate Access</button>
+              </ion-item>
+              <ion-item no-padding>
+                <button ion-button small no-padding no-margin clear>Optimize Speed</button>
+              </ion-item>
+              <ion-item no-padding>
+                <button ion-button small no-padding no-margin clear>Tv Connection Problem</button>
+              </ion-item>
+              <ion-item no-padding>
+                <button ion-button small no-padding no-margin clear>Gaming Support</button>
+              </ion-item>
+    
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+  </div>
+  <div class="row section" *ngIf="myaccount==true">
+      <ion-card no-padding style="margin: 0px; width: 100%;box-shadow:none;">
+          <ion-card-header padding-left padding-right>
+            <p padding-left padding-right style="font-weight:bold">How Can We Help !</p>
+          </ion-card-header>
+          <ion-card-content padding-left padding-right>
+            <ion-list no-lines  padding-left padding-right>
+              <ion-item padding-left padding-right>
+                <button ion-button small no-padding no-margin clear >
+                  Subscribe
+                </button>
+              </ion-item>            
+              <ion-item no-padding>
+                <button ion-button small no-padding no-margin clear>Roommate Access</button>
+              </ion-item>
+              <ion-item no-padding>
+                <button ion-button small no-padding no-margin clear>Optimize Speed</button>
+              </ion-item>           
+              <ion-item no-padding>
+                <button ion-button small no-padding no-margin clear>Support</button>
+              </ion-item>
+    
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+  </div>
+
+  <!-- </div> -->
+</ion-content>

@@ -1,0 +1,18 @@
+page-supporttickets {
+    ion-textarea{
+        background: color($colors, dim);
+    }
+    .button-footer {
+        position: fixed !important;
+        bottom: 0px !important;
+        padding: 0 !important;
+        margin: 0px !important;
+    }
+    .border-bottom{
+        border-bottom: 2px solid color($colors, primary) !important; 
+    }
+
+    ion-input, ion-textarea{
+        border-bottom: none !important;
+    }
+}

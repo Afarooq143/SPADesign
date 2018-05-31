@@ -1,0 +1,2201 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-row no-padding>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <button ion-button menuToggle>
+          <fa-icon name="bars" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+        </button>
+      </ion-col>
+      <ion-col no-padding text-center style="border-bottom:none;">
+        <img src="assets/imgs/logo.svg" style="max-width:75% !important" />
+      </ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="bell" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="shopping-cart" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <!-- ###############################
+       #######    Cart Alert   #######
+       ############################### -->
+  <div class="cart-container" *ngIf="addedCart=='true'">
+    <div class="cart-alert" style="background: rgba(0,0,0,0.8); z-index: 99999;position: fixed; width: 50%;margin: 0 auto;left: 25%;top: 35%;"
+      text-center padding-bottom padding-top>
+      <fa-icon name="cart-plus" class="fa-5x" color="light"></fa-icon>
+      <p style="font-weight:bold; color:#fff">Added to your Cart</p>
+    </div>
+  </div>
+
+
+  <!-- ###############################################
+       ######   Main Section of Onboarding     ####### 
+       ###############################################-->
+
+
+  <!-- ###############################################
+        ######         Top Navigation Bar       ####### 
+        ###############################################-->
+  <div class="section">
+    <ion-row *ngIf="menu_package==true" class="menu menu-header" [class.active]="package" [ngClass]="{active: isActive('package')}"
+      text-center>
+      <ion-col col-2 padding-left padding-right>
+        <fa-icon name="dribbble" class="fa-2x"></fa-icon>
+      </ion-col>
+      <ion-col col-2>
+        <fa-icon name="desktop" class="fa-2x"></fa-icon>
+      </ion-col>
+      <ion-col col-5 (click)="menu('package');">Packages
+        <p no-padding wrap>Internet + TV Services</p>
+      </ion-col>
+      <ion-col *ngIf="package==true">
+        <button ion-button clear small>
+          <fa-icon name="caret-down" color="light" class="fa-2x" style="float:right" (click)="allmenus();"></fa-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="menu_receiver==true" class="menu" [ngClass]="{active: isActive('receiver')}">
+      <ion-col text-center col-4>
+        <fa-icon name="desktop" class="fa-2x"></fa-icon>
+      </ion-col>
+      <ion-col col-5 (click)="menu('receiver');">Receivers
+        <p no-padding wrap>HD and DVR Receivers</p>
+      </ion-col>
+      <ion-col *ngIf="receiver==true">
+        <button ion-button clear small>
+          <fa-icon name="caret-down" color="light" class="fa-2x" style="float:right" (click)="allmenus();"></fa-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="menu_programming==true" class="menu" [ngClass]="{active: isActive('programming')}">
+      <ion-col text-center col-4>
+        <fa-icon name="desktop" class="fa-2x"></fa-icon>
+        <fa-icon name="arrow-up" class="fa-2x"></fa-icon>
+      </ion-col>
+      <ion-col col-5 (click)="menu('programming');">Programming
+        <p no-padding wrap no-margin>Upgrade your TV Channel Package</p>
+      </ion-col>
+      <ion-col *ngIf="programming==true">
+        <button ion-button clear small>
+          <fa-icon name="caret-down" color="light" class="fa-2x" style="float:right" (click)="allmenus();"></fa-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="menu_premiums==true" class="menu" [ngClass]="{active: isActive('premiums')}">
+      <ion-col text-center col-4>
+        <img src="assets/imgs/channel-logos/sm_packages_test5_icon_premiums.png" style="height:100%">
+      </ion-col>
+      <ion-col col-5 (click)="menu('premiums');">Premiums HBO, CINEMAX
+        <p no-padding wrap no-margin>Showtime, and more</p>
+      </ion-col>
+      <ion-col *ngIf="premiums==true">
+        <button ion-button clear small>
+          <fa-icon name="caret-down" color="light" class="fa-2x" style="float:right" (click)="allmenus();"></fa-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="menu_internationals==true" class="menu" [ngClass]="{active: isActive('internationals')}">
+      <ion-col text-center col-4>
+        <fa-icon name="globe" class="fa-2x"></fa-icon>
+      </ion-col>
+      <ion-col col-5 (click)="menu('internationals');">Internationals
+        <p no-padding wrap no-margin>Get Channels from different countries</p>
+      </ion-col>
+      <ion-col *ngIf="internationals==true">
+        <button ion-button clear small>
+          <fa-icon name="caret-down" color="light" class="fa-2x" style="float:right" (click)="allmenus();"></fa-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="menu_store==true" class="menu" [ngClass]="{active: isActive('store')}">
+      <ion-col text-center col-4>
+        <fa-icon name="mobile" class="fa-2x"></fa-icon>
+      </ion-col>
+      <ion-col col-5 (click)="menu('store');">Store
+        <p no-padding wrap no-margin>Routers, Phones, Plans, etc</p>
+      </ion-col>
+      <ion-col *ngIf="store==true">
+        <button ion-button clear small>
+          <fa-icon name="caret-down" color="light" class="fa-2x" style="float:right" (click)="allmenus();"></fa-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <!-- ######################################################
+       ######  Top Navigation Bar Content  Package    ####### 
+       ######################################################-->
+
+  <!-- Main Section -> Package Selection -->
+  <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="package==true">
+    <ion-slides pager="true">
+      <ion-slide>
+        <ion-card no-margin no-padding padding-top style="width:100%">
+          <ion-card-header padding>
+            <p>Cedar Village Base Package
+              <fa-icon color="primary" name="question-circle"></fa-icon>
+            </p>
+          </ion-card-header>
+          <ion-card-content padding-left padding-right>
+            <ion-row>
+              <ion-col text-center>
+                <div class="internetSpeed">
+                  <p wrap>1000 Mbps</p>
+                </div>
+              </ion-col>
+              <ion-col>
+                <img src="assets/imgs/dtv-packages/basic-package.jpg" style="height: 90%;
+                  width: 100%;" />
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col no-padding>
+                <p style="font-weight:bold; font-size:20px;"> $80.00/mo</p>
+              </ion-col>
+              <ion-col no-padding>
+                <button ion-button small style="float:right" color="warning">Select</button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <p class="link" color>Over $75 Savings compared to cable!</p>
+            </ion-row>
+            <ion-row>
+              <p style="font-weight:bold;">
+                <img src="assets/imgs/favicon-32x32.png" style="display:inline-block !important; width:20px !important; height:20px;"> Fiber Internet +
+                <img src="assets/imgs/DirecTV_logo_new.svg" style="display:inline-block !important; width: 50px !important;height:25px;"> +
+                <img src="assets/imgs/app-directv.png" style="display:inline-block !important; width:30px !important; height:25px;">
+              </p>
+            </ion-row>
+            <ion-row no-padding class="sub-heading">
+              <ion-col no-padding text-left>
+                <p>
+                  <img src="assets/imgs/favicon-32x32.png" style="display:inline-block !important; width:20px !important; height:20px;"> Fiber Internet</p>
+              </ion-col>
+            </ion-row>
+            <ion-row no-padding text-left>
+              <ul>
+                <li>Speed upto 1 Gbps (1,000 Mbps)</li>
+                <li>Wifi Service in your community</li>
+                <li>Direct Connection to Netflix, Hulu and more</li>
+                <li>No bandwidth caps</li>
+                <li>Ultra low latency for gaming</li>
+                <li>No bandwidth caps</li>
+              </ul>
+            </ion-row>
+            <ion-row class="sub-heading" no-padding>
+              <ion-col no-padding text-left>
+                <p>
+                  <img src="assets/imgs/DirecTV_logo_new.svg" style="display:inline-block !important; width: 50px !important;height:30px;">
+                </p>
+              </ion-col>
+            </ion-row>
+            <ion-row no-padding text-left>
+              <ul>
+                <li>DIRECTV Choice package</li>
+                <li>Over 170 digital channels</li>
+                <li>Big Ten Network, Bravo, Comedy Central and more</li>
+                <li>Equipment discounts for new DIRECTV customers</li>
+                <li>Whole Home DVR, HD, 4K upgrades available.</li>
+              </ul>
+            </ion-row>
+
+            <ion-row class="sub-heading" no-padding>
+              <ion-col no-padding text-left>
+                <p>
+                  <ion-badge color="warning">Bonous</ion-badge> DIRECTV APP & Community Wifi Free</p>
+              </ion-col>
+            </ion-row>
+            <ion-row no-padding text-left>
+              <ul>
+                <li>Watch DIRECTV from your Mobile devices </li>
+                <li>Watch thousnads of your favourite movies</li>
+                <li>Stram and Download your home DVR</li>
+                <li>Just add your devices and instantly connect</li>
+                <li>Consistent blazing fast internet at-home and on-th-go</li>
+                <li>No equipment needed</li>
+              </ul>
+            </ion-row>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card no-margin no-padding paddig-top style="width:100%">
+          <ion-card-header padding>
+            <p>Fiber Internet
+              <fa-icon color="primary" name="question-circle"></fa-icon>
+            </p>
+          </ion-card-header>
+          <ion-card-content padding-left padding-right>
+            <ion-row>
+              <ion-col text-center>
+                <div class="internetSpeed">
+                  <p wrap>1000 Mbps</p>
+                </div>
+              </ion-col>
+              <ion-col>
+                <img src="assets/imgs/dtv-packages/basic-package.jpg" style="height: 90%;
+                    width: 100%;" />
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col no-padding>
+                <p style="font-weight:bold; font-size:20px;"> $80.00/mo</p>
+              </ion-col>
+              <ion-col no-padding>
+                <button ion-button small style="float:right" color="warning">Select</button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <p class="link" color>Over $75 Savings compared to cable!</p>
+            </ion-row>
+            <ion-row>
+              <p style="font-weight:bold;">
+                <img src="assets/imgs/favicon-32x32.png" style="display:inline-block !important; width:20px !important; height:20px;"> Fiber Internet +
+                <img src="assets/imgs/DirecTV_logo_new.svg" style="display:inline-block !important; width: 50px !important;height:25px;"> +
+                <img src="assets/imgs/app-directv.png" style="display:inline-block !important; width:30px !important; height:25px;">
+              </p>
+            </ion-row>
+            <ion-row no-padding class="sub-heading">
+              <ion-col no-padding text-left>
+                <p>
+                  <img src="assets/imgs/favicon-32x32.png" style="display:inline-block !important; width:20px !important; height:20px;"> Fiber Internet</p>
+              </ion-col>
+            </ion-row>
+            <ion-row no-padding text-left>
+              <ul>
+                <li>Speed upto 1 Gbps (1,000 Mbps)</li>
+                <li>Wifi Service in your community</li>
+                <li>Direct Connection to Netflix, Hulu and more</li>
+                <li>No bandwidth caps</li>
+                <li>Ultra low latency for gaming</li>
+                <li>No bandwidth caps</li>
+              </ul>
+            </ion-row>
+            <ion-row class="sub-heading" no-padding>
+              <ion-col no-padding text-left>
+                <p>
+                  <img src="assets/imgs/DirecTV_logo_new.svg" style="display:inline-block !important; width: 50px !important;height:30px;">
+                </p>
+              </ion-col>
+            </ion-row>
+            <ion-row no-padding text-left>
+              <ul>
+                <li>DIRECTV Choice package</li>
+                <li>Over 170 digital channels</li>
+                <li>Big Ten Network, Bravo, Comedy Central and more</li>
+                <li>Equipment discounts for new DIRECTV customers</li>
+                <li>Whole Home DVR, HD, 4K upgrades available.</li>
+              </ul>
+            </ion-row>
+
+            <ion-row class="sub-heading" no-padding>
+              <ion-col no-padding text-left>
+                <p>
+                  <ion-badge color="warning">Bonous</ion-badge> DIRECTV APP & Community Wifi Free</p>
+              </ion-col>
+            </ion-row>
+            <ion-row no-padding text-left>
+              <ul>
+                <li>Watch DIRECTV from your Mobile devices </li>
+                <li>Watch thousnads of your favourite movies</li>
+                <li>Stram and Download your home DVR</li>
+                <li>Just add your devices and instantly connect</li>
+                <li>Consistent blazing fast internet at-home and on-th-go</li>
+                <li>No equipment needed</li>
+              </ul>
+            </ion-row>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <!-- Main Section -> Receiver Selection -->
+  <div class="section" style="margin-bottom:10px;" no-padding *ngIf="receiver==true">
+    <ion-row padding-top>
+      <ion-col no-padding>
+        <img margin-left src="assets/imgs/DirecTV_logo_new.svg" style="display:inline-block !important; height:30px;">
+      </ion-col>
+      <ion-col no-padding>
+        <p style="font-weight: bold;font-size: 19px;padding: 0px; margin: 4px 0px 0px 0px;">Receivers</p>
+      </ion-col>
+    </ion-row>
+    <ion-row style="background:#46afd6" text-left>
+      <ion-col padding style="color:#fff;">
+        <fa-icon name="desktop" class="fa-2x" color="light"></fa-icon> TV#1</ion-col>
+    </ion-row>
+
+
+
+    <div>
+      <div class="row icon-row">
+
+        <div class="col text-center">
+          <ul no-padding style="list-style:none; width:100%;">
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">HD-DVR
+              <fa-icon name="caret-down"></fa-icon>
+            </li>
+            <li no-padding class="list-package">Equipment Fee</li>
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+              <del>$199</del>
+            </li>
+            <li no-padding class="list-package">
+              <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" />
+            </li>
+            <li no-padding class="list-package">
+              <button ion-button small color="warning" style="color:#fff">Select</button>
+            </li>
+          </ul>
+        </div>
+
+
+        <div class="col text-center">
+          <ul no-padding style="list-style:none; width:100%;">
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">HD-DVR
+              <fa-icon name="caret-down"></fa-icon>
+            </li>
+            <li no-padding class="list-package">Equipment Fee</li>
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+              <del>$199</del>
+            </li>
+            <li no-padding class="list-package">
+              <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" />
+            </li>
+            <li no-padding class="list-package">
+              <button ion-button small color="warning" style="color:#fff">Select</button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col text-center">
+          <ul no-padding style="list-style:none; width:100%;">
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">HD-DVR
+              <fa-icon name="caret-down"></fa-icon>
+            </li>
+            <li no-padding class="list-package">Equipment Fee</li>
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+              <del>$199</del>
+            </li>
+            <li no-padding class="list-package">
+              <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" />
+            </li>
+            <li no-padding class="list-package">
+              <button ion-button small color="warning" style="color:#fff">Select</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row icon-row">
+
+        <div class="col text-center">
+          <ul no-padding style="list-style:none; width:100%;">
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">HD-DVR
+              <fa-icon name="caret-down"></fa-icon>
+            </li>
+            <li no-padding class="list-package">Equipment Fee</li>
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+              <del>$199</del>
+            </li>
+            <li no-padding class="list-package">
+              <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" />
+            </li>
+            <li no-padding class="list-package">
+              <button ion-button small color="warning" style="color:#fff">Select</button>
+            </li>
+          </ul>
+        </div>
+
+
+        <div class="col text-center">
+          <ul no-padding style="list-style:none; width:100%;">
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">HD-DVR
+              <fa-icon name="caret-down"></fa-icon>
+            </li>
+            <li no-padding class="list-package">Equipment Fee</li>
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+              <del>$199</del>
+            </li>
+            <li no-padding class="list-package">
+              <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" />
+            </li>
+            <li no-padding class="list-package">
+              <button ion-button small color="warning" style="color:#fff">Select</button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col text-center">
+          <ul no-padding style="list-style:none; width:100%;">
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">HD-DVR
+              <fa-icon name="caret-down"></fa-icon>
+            </li>
+            <li no-padding class="list-package">Equipment Fee</li>
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+              <del>$199</del>
+            </li>
+            <li no-padding class="list-package">
+              <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" />
+            </li>
+            <li no-padding class="list-package">
+              <button ion-button small color="warning" style="color:#fff">Select</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div [ngSwitch]="progMenu">
+        <div *ngSwitchCase="'prog1'">
+          <ion-row class="leftSlide">
+            <ion-col>
+              <fa-icon name="caret-left" class="fa-5x" (click)="receive_menu(0);"></fa-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row text-center no-padding padding-top>
+            <div class="col text-center">
+              <button class="button button-positive">Icon</button>
+              Title
+            </div>
+          </ion-row>
+          <ion-row no-padding text-center style="font-size:14px;">
+            <ion-col no-padding padding-left>HD+DVR Service Fee</ion-col>
+            <ion-col no-padding padding-right>Whole Home DVR </ion-col>
+          </ion-row>
+          <ion-row no-padding>
+            <ion-col no-padding end>
+              <p no-margin style="font-weight:bold">$20/mo + $30/mo</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col text-right class="rightSlide">
+              <fa-icon name="caret-right" class="fa-5x" (click)="receive_menu(2);"></fa-icon>
+            </ion-col>
+          </ion-row>
+        </div>
+
+        <div *ngSwitchCase="'prog2'">
+          <ion-row class="leftSlide">
+            <ion-col>
+              <fa-icon name="caret-left" class="fa-5x" (click)="receive_menu(1);"></fa-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row text-center padding-top>
+            <ul no-padding style="list-style:none; width:100%;">
+              <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">HD-DVR
+                <fa-icon name="caret-down"></fa-icon>
+              </li>
+              <li no-padding class="list-package">Equipment Fee</li>
+              <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+                <del>$199</del>
+              </li>
+              <li no-padding class="list-package">
+                <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" style="width:40%" />
+              </li>
+              <li no-padding class="list-package">
+                <button ion-button small color="warning" style="color:#fff">Select</button>
+              </li>
+
+            </ul>
+          </ion-row>
+          <ion-row no-padding text-center style="font-size:14px;">
+            <ion-col no-padding padding-left>DVR Service Fee</ion-col>
+          </ion-row>
+          <ion-row no-padding>
+            <ion-col no-padding end>
+              <p no-margin style="font-weight:bold">$20/mo</p>
+            </ion-col>
+          </ion-row>
+          <ion-row text-right class="rightSlide">
+            <ion-col>
+              <fa-icon name="caret-right" class="fa-5x" (click)="receive_menu(3);"></fa-icon>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngSwitchCase="'prog3'">
+          <ion-row class="leftSlide">
+            <ion-col>
+              <fa-icon name="caret-left" class="fa-5x" (click)="receive_menu(2);"></fa-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col padding>
+              Prog3 This is a simple text for prog 3 Prog3 This is a simple text for prog 3 Prog3 This is a simple text for prog 3 Prog3
+              This is a simple text for prog 3 Prog3 This is a simple text for prog 3
+            </ion-col>
+          </ion-row>
+          <ion-row text-right class="rightSlide">
+            <ion-col>
+              <fa-icon name="caret-right" class="fa-5x" (click)="receive_menu(0);"></fa-icon>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <ion-slides id="slider" pager="true">
+      <ion-slide padding-bottom margin-bottom>
+        <ion-row text-center no-padding padding-top>
+          <ul no-padding style="list-style:none; width:100%;">
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">Gene
+              <fa-icon name="caret-down"></fa-icon>
+            </li>
+            <li no-padding class="list-package">Equipment Fee</li>
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+              <del>$299</del>
+            </li>
+            <li no-padding class="list-package">
+              <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" style="width:50%" />
+            </li>
+            <li no-padding class="list-package">
+              <button ion-button small color="warning" style="color:#fff">Select</button>
+            </li>
+
+          </ul>
+        </ion-row>
+        <ion-row no-padding text-center style="font-size:14px;">
+          <ion-col no-padding padding-left>HD+DVR Service Fee</ion-col>
+          <ion-col no-padding padding-right>Whole Home DVR </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+          <ion-col no-padding end>
+            <p no-margin style="font-weight:bold">$20/mo + $30/mo</p>
+          </ion-col>
+        </ion-row>
+
+      </ion-slide>
+      <ion-slide padding-bottom margin-bottom>
+        <ion-row text-center padding-top>
+          <ul no-padding style="list-style:none; width:100%;">
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">HD-DVR
+              <fa-icon name="caret-down"></fa-icon>
+            </li>
+            <li no-padding class="list-package">Equipment Fee</li>
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+              <del>$199</del>
+            </li>
+            <li no-padding class="list-package">
+              <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" style="width:40%" />
+            </li>
+            <li no-padding class="list-package">
+              <button ion-button small color="warning" style="color:#fff">Select</button>
+            </li>
+
+          </ul>
+        </ion-row>
+        <ion-row no-padding text-center style="font-size:14px;">
+          <ion-col no-padding padding-left>DVR Service Fee</ion-col>
+        </ion-row>
+        <ion-row no-padding>
+          <ion-col no-padding end>
+            <p no-margin style="font-weight:bold">$20/mo</p>
+          </ion-col>
+        </ion-row>
+      </ion-slide>
+      <ion-slide padding-bottom margin-bottom>
+        <ion-row text-center padding-top>
+          <ul no-padding style="list-style:none; width:100%;">
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">HD
+              <fa-icon name="caret-down"></fa-icon>
+            </li>
+            <li no-padding class="list-package">Equipment Fee</li>
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+              <del>$99</del>
+            </li>
+            <li no-padding class="list-package">
+              <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" style="width:30%" />
+            </li>
+            <li no-padding class="list-package">
+              <button ion-button small color="warning" style="color:#fff">Select</button>
+            </li>
+          </ul>
+        </ion-row>
+      </ion-slide>
+    </ion-slides>
+    <ion-row style="background:#46afd6" text-left>
+      <ion-col padding style="color:#fff;">
+        <fa-icon name="desktop" class="fa-2x" color="light"></fa-icon> TV#2</ion-col>
+    </ion-row>
+    <ion-row text-center>
+      <ion-col>Mirroring Fee
+        <b>$7/mo</b>
+      </ion-col>
+    </ion-row>
+    <ion-slides id="slider" pager="true">
+      <ion-slide padding-bottom margin-bottom>
+        <ion-row text-center no-padding padding-top>
+          <ul no-padding style="list-style:none; width:100%;">
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">Gene Mini
+              <fa-icon name="caret-down"></fa-icon>
+            </li>
+            <li no-padding class="list-package">Equipment Fee</li>
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+              <del>$99</del>
+            </li>
+            <li no-padding class="list-package">
+              <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" style="width:40%" />
+            </li>
+            <li no-padding class="list-package">
+              <button ion-button small color="warning" style="color:#fff">Select</button>
+            </li>
+
+          </ul>
+        </ion-row>
+      </ion-slide>
+      <ion-slide padding-bottom margin-bottom>
+        <ion-row text-center padding-top>
+          <ul no-padding style="list-style:none; width:100%;">
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">Genie 4k Mini
+              <fa-icon name="caret-down"></fa-icon>
+            </li>
+            <li no-padding class="list-package">Equipment Fee</li>
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+              <del>$199</del>
+            </li>
+            <li no-padding class="list-package">
+              <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" style="width:40%" />
+            </li>
+            <li no-padding class="list-package">
+              <button ion-button small color="warning" style="color:#fff">Select</button>
+            </li>
+
+          </ul>
+        </ion-row>
+      </ion-slide>
+      <ion-slide padding-bottom margin-bottom>
+        <ion-row text-center padding-top>
+          <ul no-padding style="list-style:none; width:100%;">
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">Genie Wireless Mini
+              <fa-icon name="caret-down"></fa-icon>
+            </li>
+            <li no-padding class="list-package">Equipment Fee</li>
+            <li no-padding class="list-package" style="font-weight:bold;font-size:20px;">
+              <del>$99</del>
+            </li>
+            <li no-padding class="list-package">
+              <img src="assets/imgs/dtv-receivers/img_equipment_receiver_one_tvs.png" style="width:40%" />
+            </li>
+            <li no-padding class="list-package">
+              <button ion-button small color="warning" style="color:#fff">Select</button>
+            </li>
+          </ul>
+        </ion-row>
+      </ion-slide>
+    </ion-slides>
+    <ion-row style="background:#46afd6; margin-bottom:60px;" text-left>
+      <ion-col padding style="color:#fff;">
+        <fa-icon name="desktop" class="fa-2x" color="light"></fa-icon> +Add TV</ion-col>
+    </ion-row>
+  </div>
+
+  <!-- Main Section Programming Selection -->
+  <div class="section" style="margin-bottom:10px;" no-padding *ngIf="programming==true" style="margin-bottom:100px;">
+    <ion-row padding-top>
+      <ion-col no-padding>
+        <img margin-left src="assets/imgs/DirecTV_logo_new.svg" style="display:inline-block !important; height:30px;">
+      </ion-col>
+      <ion-col no-padding>
+        <p style="font-weight: bold;font-size: 19px;padding: 0px; margin: 4px 0px 0px 0px;">Programming</p>
+      </ion-col>
+    </ion-row>
+
+
+    <!-- #######################################################
+         ####### Navigation Bar of Programming Selection  ######
+         #######################################################  -->
+    <ion-row style="background:#46afd6; " *ngIf="entertainment==true">
+      <ion-col style="color:#fff;" padding>
+        Entertainment 120+ Channels
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="programming_menu('choice');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="choice==true">
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="programming_menu('entertainment');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;" padding>
+        Choice 150+ Channels
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="programming_menu('xtra');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="xtra==true">
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="programming_menu('choice');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;" padding>
+        Xtra 220+ Channels
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="programming_menu('ultimate');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="ultimate==true">
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="programming_menu('xtra');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;" padding>
+        Ultimate 240+ Channels
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="programming_menu('premier');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="premier==true">
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="programming_menu('ultimate');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;" padding>
+        Premier 315+ Channels
+      </ion-col>
+    </ion-row>
+    <!-- #######################################################
+         #######       Content of Programming Selection   ######
+         #######################################################  -->
+
+    <!-- Programming -> Entertainment -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="entertainment==true">
+      <ion-row>
+        <ion-col>
+          <img src="assets/imgs/dtv-packages/entertainment.png">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/channel_differentiators_entertainment.png" style="height:100%">
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <p no-padding no-margin style="font-weight:bold;">$36.49/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <button ion-button small color="warning">Select</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p padding-left padding-right>Our most popular package offers a premium entertainment experience without the premium price tag.</p>
+        </ion-col>
+      </ion-row>
+      <ion-list *ngFor="let item of channels; let i = index" no-lines no-padding>
+        <ion-list-header color="dim" (click)="toggleSection()" style="text-align:left;">
+          <fa-icon name="caret-right" class="fa-2x"></fa-icon> {{ item.name }}
+        </ion-list-header>
+        <div *ngIf="buttonClicked">
+          <ion-row no-padding *ngFor="let child of item.children;" style="border-bottom: 1px solid #46afd6; vertical-align:middle;"
+            class="channel-list">
+            <ion-col padding-left no-margin style="padding-top:10px !important;padding-bottom:0px !important">
+              <img src="assets/imgs/channel-logos/{{ child.image }}" style="height:50%;">
+            </ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important;padding-bottom:0px !important">{{ child.name }}</ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important ;padding-bottom:0px !important">{{ child.channels }}</ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </div>
+
+    <!-- Programming -> Choice -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="choice==true">
+      <ion-row>
+        <ion-col>
+          <img src="assets/imgs/dtv-packages/choice.png">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/channel_differentiators_choice.png" style="height:100%">
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <p no-padding no-margin style="font-weight:bold;">$36.49/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <button ion-button small color="warning">Select</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p padding-left padding-right>Our most popular package offers a premium entertainment experience without the premium price tag.</p>
+        </ion-col>
+      </ion-row>
+      <ion-list *ngFor="let item of channels; let i = index" no-lines no-padding>
+        <ion-list-header color="dim" (click)="toggleSection()" style="text-align:left;">
+          <fa-icon name="caret-right" class="fa-2x"></fa-icon> {{ item.name }}
+        </ion-list-header>
+        <div *ngIf="buttonClicked">
+          <ion-row no-padding *ngFor="let child of item.children;" style="border-bottom: 1px solid #46afd6; vertical-align:middle;"
+            class="channel-list">
+            <ion-col padding-left no-margin style="padding-top:10px !important;padding-bottom:0px !important">
+              <img src="assets/imgs/channel-logos/{{ child.image }}" style="height:50%;">
+            </ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important;padding-bottom:0px !important">{{ child.name }}</ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important ;padding-bottom:0px !important">{{ child.channels }}</ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </div>
+
+    <!-- Programming -> Xtra -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="xtra==true">
+      <ion-row>
+        <ion-col>
+          <img src="assets/imgs/dtv-packages/xtra.png">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/channel_differentiators_xtra.png" style="height:100%">
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <p no-padding no-margin style="font-weight:bold;">$36.49/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <button ion-button small color="warning">Select</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p padding-left padding-right>Our most popular package offers a premium entertainment experience without the premium price tag.</p>
+        </ion-col>
+      </ion-row>
+      <ion-list *ngFor="let item of channels; let i = index" no-lines no-padding>
+        <ion-list-header color="dim" (click)="toggleSection()" style="text-align:left;">
+          <fa-icon name="caret-right" class="fa-2x"></fa-icon> {{ item.name }}
+        </ion-list-header>
+        <div *ngIf="buttonClicked">
+          <ion-row no-padding *ngFor="let child of item.children;" style="border-bottom: 1px solid #46afd6; vertical-align:middle;"
+            class="channel-list">
+            <ion-col padding-left no-margin style="padding-top:10px !important;padding-bottom:0px !important">
+              <img src="assets/imgs/channel-logos/{{ child.image }}" style="height:50%;">
+            </ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important;padding-bottom:0px !important">{{ child.name }}</ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important ;padding-bottom:0px !important">{{ child.channels }}</ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </div>
+
+    <!-- Programming -> Ultimate -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="ultimate==true">
+      <ion-row>
+        <ion-col>
+          <img src="assets/imgs/dtv-packages/ultimate.png">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/channel_differentiators_ultimate.png" style="height:100%">
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <p no-padding no-margin style="font-weight:bold;">$36.49/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <button ion-button small color="warning">Select</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p padding-left padding-right>Our most popular package offers a premium entertainment experience without the premium price tag.</p>
+        </ion-col>
+      </ion-row>
+      <ion-list *ngFor="let item of channels; let i = index" no-lines no-padding>
+        <ion-list-header color="dim" (click)="toggleSection()" style="text-align:left;">
+          <fa-icon name="caret-right" class="fa-2x"></fa-icon> {{ item.name }}
+        </ion-list-header>
+        <div *ngIf="buttonClicked">
+          <ion-row no-padding *ngFor="let child of item.children;" style="border-bottom: 1px solid #46afd6; vertical-align:middle;"
+            class="channel-list">
+            <ion-col padding-left no-margin style="padding-top:10px !important;padding-bottom:0px !important">
+              <img src="assets/imgs/channel-logos/{{ child.image }}" style="height:50%;">
+            </ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important;padding-bottom:0px !important">{{ child.name }}</ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important ;padding-bottom:0px !important">{{ child.channels }}</ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </div>
+
+    <!-- Programming -> Premiums -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="premier==true">
+      <ion-row>
+        <ion-col>
+          <img src="assets/imgs/dtv-packages/premier.png">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/channel_differentiators_premier.png" style="height:100%">
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <p no-padding no-margin style="font-weight:bold;">$36.49/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <button ion-button small color="warning">Select</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p padding-left padding-right>Our most popular package offers a premium entertainment experience without the premium price tag.</p>
+        </ion-col>
+      </ion-row>
+      <ion-list *ngFor="let item of channels; let i = index" no-lines no-padding>
+        <ion-list-header color="dim" (click)="toggleSection()" style="text-align:left;">
+          <fa-icon name="caret-right" class="fa-2x"></fa-icon> {{ item.name }}
+        </ion-list-header>
+        <div *ngIf="buttonClicked">
+          <ion-row no-padding *ngFor="let child of item.children;" style="border-bottom: 1px solid #46afd6; vertical-align:middle;"
+            class="channel-list">
+            <ion-col padding-left no-margin style="padding-top:10px !important;padding-bottom:0px !important">
+              <img src="assets/imgs/channel-logos/{{ child.image }}" style="height:50%;">
+            </ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important;padding-bottom:0px !important">{{ child.name }}</ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important ;padding-bottom:0px !important">{{ child.channels }}</ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </div>
+  </div>
+
+
+  <!--Main Section -> Premium Selection -->
+  <div class="section" style="margin-bottom:10px;" no-padding *ngIf="premiums==true">
+    <!-- ####################################################
+         ####### Navigation Bar of Premium Selection   ######
+         ####################################################  -->
+    <ion-row padding-top text-center>
+      <ion-col no-padding>
+        <p no-padding no-margin style="font-weight:bold;font-size:16px;">Premiums</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="hbo==true" text-center>
+      <ion-col style="color:#fff;" padding>
+        <img src="assets/imgs/channel-logos/HBO_SD.gif" style="height:30px; width:40%">
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="premium_menu('starz');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="starz==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="premium_menu('hbo');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;" padding>
+        <img src="assets/imgs/logos-premier/starz.svg" style="height:30px; width:40%">
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="premium_menu('cinemax');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="cinemax==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="premium_menu('starz');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;" padding>
+        <img src="assets/imgs/logos-premier/Cinemax.svg" style="height:30px; width:40%">
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="premium_menu('showtime');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="showtime==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="premium_menu('cinemax');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;" padding>
+        <img src="assets/imgs/channel-logos/SHO_SD.gif" style="height:30px; width:40%">
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="premium_menu('sports');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="sports==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="premium_menu('showtime');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;" padding>
+        <img src="assets/imgs/logos-premier/DTV_SportsPack_TM_logo.png" style="height:30px; width:40%">
+      </ion-col>
+    </ion-row>
+
+
+    <!-- #############################################
+          ####### Content of Premium Selection   ######
+          ############################################# -->
+
+    <!-- Premium -> HBO Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="hbo==true">
+      <ion-row>
+        <ion-col>
+          <img src="assets/imgs/dtv-premier-channels/HBO.jpg">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/HBOZ_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/HBOS_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/HBOLatino_HD.gif" style="height:80%">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/HB2e_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/HBOComedy_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/HBOF_SD.gif" style="height:80%">
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <p no-padding no-margin style="font-weight:bold;">$36.49/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <button ion-button small color="warning">Select</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p padding-left padding-right>TV's longest-standing premium channel network.</p>
+        </ion-col>
+      </ion-row>
+      <ion-list *ngFor="let item of channels; let i = index" no-lines no-padding>
+        <ion-list-header color="dim" (click)="toggleSection()" style="text-align:left;">
+          <fa-icon name="caret-right" class="fa-2x"></fa-icon> {{ item.name }}
+        </ion-list-header>
+        <div *ngIf="buttonClicked">
+          <ion-row text-center no-padding *ngFor="let child of item.children;" style="border-bottom: 1px solid #46afd6; vertical-align:middle;"
+            class="channel-list">
+            <ion-col padding-left no-margin style="padding-top:10px !important;padding-bottom:0px !important">
+              <img src="assets/imgs/channel-logos/{{ child.image }}" style="height:50%;">
+            </ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important;padding-bottom:0px !important">{{ child.name }}</ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important ;padding-bottom:0px !important">{{ child.channels }}</ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </div>
+    <!-- Premium -> Choice Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="starz==true">
+      <ion-row>
+        <ion-col>
+          <img src="assets/imgs/dtv-premier-channels/starz.jpg">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/Stz_HD.gif" style="height:80%">
+        </ion-col>
+
+        <ion-col>
+          <img src="assets/imgs/channel-logos/StzComedy_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/StzEdge_HD.gif" style="height:80%">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/StzInBlack_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/StzKidsFam_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/StzCinema_HD.gif" style="height:80%">
+        </ion-col>
+
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <p no-padding no-margin style="font-weight:bold;">$36.49/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <button ion-button small color="warning">Select</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p padding-left padding-right>TV's longest-standing premium channel network.</p>
+        </ion-col>
+      </ion-row>
+      <ion-list *ngFor="let item of channels; let i = index" no-lines no-padding>
+        <ion-list-header color="dim" (click)="toggleSection()" style="text-align:left;">
+          <fa-icon name="caret-right" class="fa-2x"></fa-icon> {{ item.name }}
+        </ion-list-header>
+        <div *ngIf="buttonClicked">
+          <ion-row text-center no-padding *ngFor="let child of item.children;" style="border-bottom: 1px solid #46afd6; vertical-align:middle;"
+            class="channel-list">
+            <ion-col padding-left no-margin style="padding-top:10px !important;padding-bottom:0px !important">
+              <img src="assets/imgs/channel-logos/{{ child.image }}" style="height:50%;">
+            </ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important;padding-bottom:0px !important">{{ child.name }}</ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important ;padding-bottom:0px !important">{{ child.channels }}</ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </div>
+    <!-- premium -> Xtra Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="cinemax==true">
+      <ion-row>
+        <ion-col>
+          <img src="assets/imgs/dtv-premier-channels/cinemax.jpg">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/MAX_SD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/MAXE_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/MAXW_HD.gif" style="height:80%">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/MMAX_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/MovieMax_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/MxLat.gif" style="height:80%">
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <p no-padding no-margin style="font-weight:bold;">$36.49/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <button ion-button small color="warning">Select</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p padding-left padding-right>TV's longest-standing premium channel network.</p>
+        </ion-col>
+      </ion-row>
+      <ion-list *ngFor="let item of channels; let i = index" no-lines no-padding>
+        <ion-list-header color="dim" (click)="toggleSection()" style="text-align:left;">
+          <fa-icon name="caret-right" class="fa-2x"></fa-icon> {{ item.name }}
+        </ion-list-header>
+        <div *ngIf="buttonClicked">
+          <ion-row text-center no-padding *ngFor="let child of item.children;" style="border-bottom: 1px solid #46afd6; vertical-align:middle;"
+            class="channel-list">
+            <ion-col padding-left no-margin style="padding-top:10px !important;padding-bottom:0px !important">
+              <img src="assets/imgs/channel-logos/{{ child.image }}" style="height:50%;">
+            </ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important;padding-bottom:0px !important">{{ child.name }}</ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important ;padding-bottom:0px !important">{{ child.channels }}</ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </div>
+    <!-- Premium -> Ultimate Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="showtime==true">
+      <ion-row>
+        <ion-col>
+          <img src="assets/imgs/dtv-premier-channels/showtime.jpg">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/SHOHD_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/SHO2HD_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/SHO3_HD.gif" style="height:80%">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/SHOw_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/ShWm_HD.gif" style="height:80%">
+        </ion-col>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/SHNX_HD.gif" style="height:80%">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right text-center>
+        <ion-col>
+          <img src="assets/imgs/channel-logos/SHBY_HD.gif" style="height:80%">
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <p no-padding no-margin style="font-weight:bold;">$36.49/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <button ion-button small color="warning">Select</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p padding-left padding-right>TV's longest-standing premium channel network.</p>
+        </ion-col>
+      </ion-row>
+      <ion-list *ngFor="let item of channels; let i = index" no-lines no-padding>
+        <ion-list-header color="dim" (click)="toggleSection()" style="text-align:left;">
+          <fa-icon name="caret-right" class="fa-2x"></fa-icon> {{ item.name }}
+        </ion-list-header>
+        <div *ngIf="buttonClicked">
+          <ion-row text-center no-padding *ngFor="let child of item.children;" style="border-bottom: 1px solid #46afd6; vertical-align:middle;"
+            class="channel-list">
+            <ion-col padding-left no-margin style="padding-top:10px !important;padding-bottom:0px !important">
+              <img src="assets/imgs/channel-logos/{{ child.image }}" style="height:50%;">
+            </ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important;padding-bottom:0px !important">{{ child.name }}</ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important ;padding-bottom:0px !important">{{ child.channels }}</ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </div>
+    <!-- Premium -> Sports -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="sports==true">
+      <!-- <ion-row>
+          <ion-col>
+            <img src="assets/imgs/dtv-premier-channels/sports-pack-nfl.jpg">
+          </ion-col>
+        </ion-row> -->
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <img src="assets/imgs/dtv-premier-channels/sport-packs-logo-channels.png" style="height:80%">
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <p no-padding no-margin style="font-weight:bold;">$36.49/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding text-center>
+        <ion-col no-padding>
+          <button ion-button small color="warning">Select</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p padding-left padding-right>TV's longest-standing premium channel network.</p>
+        </ion-col>
+      </ion-row>
+      <ion-list *ngFor="let item of channels; let i = index" no-lines no-padding>
+        <ion-list-header color="dim" (click)="toggleSection()" style="text-align:left;">
+          <fa-icon name="caret-right" class="fa-2x"></fa-icon> {{ item.name }}
+        </ion-list-header>
+        <div *ngIf="buttonClicked">
+          <ion-row text-center no-padding *ngFor="let child of item.children;" style="border-bottom: 1px solid #46afd6; vertical-align:middle;"
+            class="channel-list">
+            <ion-col padding-left no-margin style="padding-top:10px !important;padding-bottom:0px !important">
+              <img src="assets/imgs/channel-logos/{{ child.image }}" style="height:50%;">
+            </ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important;padding-bottom:0px !important">{{ child.name }}</ion-col>
+            <ion-col no-padding no-margin style="font-size:15px;padding-top:10px !important ;padding-bottom:0px !important">{{ child.channels }}</ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </div>
+  </div>
+
+
+
+  <!--Main Section -> Internationals -->
+  <div class="section" style="margin-bottom:10px;" no-padding *ngIf="internationals==true">
+    <!-- ##########################################################
+         ####### Navigation Bar of International Selection   ######
+         ##########################################################  -->
+    <ion-row padding-top text-center>
+      <ion-col no-padding>
+        <p no-padding no-margin style="font-weight:bold;font-size:16px;">Internationals</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="chinese==true" text-center>
+      <ion-col style="color:#fff;padding-top:8px;" no-padding>
+        <img src="assets/imgs/dtv-internationals/flags/ch.svg" style="height:35px; width:25%">
+        <p no-padding no-margin style="font-weight:bold;">Chinese TV</p>
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="international_menu('korean');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="korean==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="international_menu('chinese');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;padding-top:8px;" no-padding>
+        <img src="assets/imgs/dtv-internationals/flags/kr.svg" style="height:35px; width:25%">
+        <p no-padding no-margin style="font-weight:bold;">Korean TV</p>
+      </ion-col>
+
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="international_menu('indian');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="indian==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="international_menu('korean');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;padding-top:8px;" no-padding>
+        <img src="assets/imgs/dtv-internationals/flags/in.svg" style="height:35px; width:25%">
+        <p no-padding no-margin style="font-weight:bold;">Hindu TV</p>
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="international_menu('filipino');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="filipino==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="international_menu('indian');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;padding-top:8px;" no-padding>
+        <img src="assets/imgs/dtv-internationals/flags/ph.svg" style="height:35px; width:25%">
+        <p no-padding no-margin style="font-weight:bold;">Filipino TV</p>
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="international_menu('russian');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="russian==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="international_menu('indian');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;padding-top:8px;" no-padding>
+        <img src="assets/imgs/dtv-internationals/flags/ru.svg" style="height:35px; width:25%">
+        <p no-padding no-margin style="font-weight:bold;">Russian TV</p>
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="international_menu('brazil');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="brazil==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="international_menu('russian');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;padding-top:8px;" no-padding>
+        <img src="assets/imgs/dtv-internationals/flags/br.svg" style="height:35px; width:25%">
+        <p no-padding no-margin style="font-weight:bold;">Brazil TV</p>
+      </ion-col>
+    </ion-row>
+
+
+    <!-- ##########################################
+         ##  Content of International Selection  ##
+         ########################################## -->
+
+    <!-- International -> Chinese Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="chinese==true">
+      <ion-row padding-left padding-right text-center>
+        <ion-col>
+          <img src="assets/imgs/dtv-internationals/chinese.png">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">Chinese</p>
+          <p no-padding no-margin style="font-weight:bold">Get All the Cantonese & Mandarin-Languge</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">CHINESEDIRECT</p>
+        </ion-col>
+        <ion-col text-center>
+          <p no-padding no-margin style="font-weight:bold;">$12.99/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <button ion-button clear small no-padding no-margin>View Lineup</button>
+        </ion-col>
+        <ion-col no-padding text-center>
+          <ion-badge color="warning">Select</ion-badge>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">MANDARINDIRECT III</p>
+        </ion-col>
+        <ion-col text-center>
+          <p no-padding no-margin style="font-weight:bold;">$16.99/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <button ion-button clear small no-padding no-margin>View Lineup</button>
+        </ion-col>
+        <ion-col text-center>
+          <ion-badge color="warning">Select</ion-badge>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- International -> Korean Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="korean==true">
+      <ion-row padding-left padiing-right text-center>
+        <ion-col>
+          <img src="assets/imgs/dtv-internationals/korean.png">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">Chinese</p>
+          <p no-padding no-margin style="font-weight:bold">Get All the Cantonese & Mandarin-Languge</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">CHINESEDIRECT</p>
+        </ion-col>
+        <ion-col text-center>
+          <p no-padding no-margin style="font-weight:bold;">$12.99/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <button ion-button clear small no-padding no-margin>View Lineup</button>
+        </ion-col>
+        <ion-col no-padding text-center>
+          <ion-badge color="warning">Select</ion-badge>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">MANDARINDIRECT III</p>
+        </ion-col>
+        <ion-col text-center>
+          <p no-padding no-margin style="font-weight:bold;">$16.99/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <button ion-button clear small no-padding no-margin>View Lineup</button>
+        </ion-col>
+        <ion-col text-center>
+          <ion-badge color="warning">Select</ion-badge>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- International -> Indian Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="indian==true">
+      <ion-row padding-left padding-right text-center>
+        <ion-col>
+          <img src="assets/imgs/dtv-internationals/vietnam.png">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">Chinese</p>
+          <p no-padding no-margin style="font-weight:bold">Get All the Cantonese & Mandarin-Languge</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">CHINESEDIRECT</p>
+        </ion-col>
+        <ion-col text-center>
+          <p no-padding no-margin style="font-weight:bold;">$12.99/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <button ion-button clear small no-padding no-margin>View Lineup</button>
+        </ion-col>
+        <ion-col no-padding text-center>
+          <ion-badge color="warning">Select</ion-badge>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">MANDARINDIRECT III</p>
+        </ion-col>
+        <ion-col text-center>
+          <p no-padding no-margin style="font-weight:bold;">$16.99/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <button ion-button clear small no-padding no-margin>View Lineup</button>
+        </ion-col>
+        <ion-col text-center>
+          <ion-badge color="warning">Select</ion-badge>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- International -> Filipino Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="filipino==true">
+      <ion-row padding-left padiing-right text-center>
+        <ion-col>
+          <img src="assets/imgs/dtv-internationals/phillipino.png">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">Chinese</p>
+          <p no-padding no-margin style="font-weight:bold">Get All the Cantonese & Mandarin-Languge</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">CHINESEDIRECT</p>
+        </ion-col>
+        <ion-col text-center>
+          <p no-padding no-margin style="font-weight:bold;">$12.99/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <button ion-button clear small no-padding no-margin>View Lineup</button>
+        </ion-col>
+        <ion-col no-padding text-center>
+          <ion-badge color="warning">Select</ion-badge>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">MANDARINDIRECT III</p>
+        </ion-col>
+        <ion-col text-center>
+          <p no-padding no-margin style="font-weight:bold;">$16.99/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <button ion-button clear small no-padding no-margin>View Lineup</button>
+        </ion-col>
+        <ion-col text-center>
+          <ion-badge color="warning">Select</ion-badge>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!-- International -> Russian Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="russian==true">
+      <ion-row padding-left padding-right text-center>
+        <ion-col>
+          <img src="assets/imgs/dtv-internationals/russian.png">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">Chinese</p>
+          <p no-padding no-margin style="font-weight:bold">Get All the Cantonese & Mandarin-Languge</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">CHINESEDIRECT</p>
+        </ion-col>
+        <ion-col text-center>
+          <p no-padding no-margin style="font-weight:bold;">$12.99/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <button ion-button clear small no-padding no-margin>View Lineup</button>
+        </ion-col>
+        <ion-col no-padding text-center>
+          <ion-badge color="warning">Select</ion-badge>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">MANDARINDIRECT III</p>
+        </ion-col>
+        <ion-col text-center>
+          <p no-padding no-margin style="font-weight:bold;">$16.99/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <button ion-button clear small no-padding no-margin>View Lineup</button>
+        </ion-col>
+        <ion-col text-center>
+          <ion-badge color="warning">Select</ion-badge>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!-- International -> Russian Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="brazil==true">
+      <ion-row padding-left padding-right>
+        <ion-col>
+          <img src="assets/imgs/dtv-internationals/brazil.png">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">Chinese</p>
+          <p no-padding no-margin style="font-weight:bold">Get All the Cantonese & Mandarin-Languge</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">CHINESEDIRECT</p>
+        </ion-col>
+        <ion-col text-center>
+          <p no-padding no-margin style="font-weight:bold;">$12.99/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <button ion-button clear small no-padding no-margin>View Lineup</button>
+        </ion-col>
+        <ion-col no-padding text-center>
+          <ion-badge color="warning">Select</ion-badge>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">MANDARINDIRECT III</p>
+        </ion-col>
+        <ion-col text-center>
+          <p no-padding no-margin style="font-weight:bold;">$16.99/mo</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <button ion-button clear small no-padding no-margin>View Lineup</button>
+        </ion-col>
+        <ion-col text-center>
+          <ion-badge color="warning">Select</ion-badge>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+
+
+  <!--Main Section -> Store -->
+  <div class="section" style="margin-bottom:10px;" no-padding *ngIf="store==true">
+    <!-- ##################################################
+         ####### Navigation Bar of Store Selection   ######
+         ##################################################  -->
+    <ion-row padding-top text-center>
+      <ion-col no-padding>
+        <p no-padding no-margin style="font-weight:bold;font-size:16px;">Store</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="extreme==true" text-center>
+      <ion-col style="color:#fff;padding-top:8px;" no-padding>
+        <img src="assets/imgs/store-equipment/icons/ASUS_AC68U_Router_480x388.1.png" style="height:35px; width:25%">
+        <p no-padding no-margin style="font-weight:bold;">The Extreme</p>
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="store_menu('spartan');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="spartan==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="store_menu('extreme');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;padding-top:8px;" no-padding>
+        <img src="assets/imgs/store-equipment/icons/ASUS_AC66U_Router_500x314.1.png" style="height:35px; width:25%">
+        <p no-padding no-margin style="font-weight:bold;">The Spartan</p>
+      </ion-col>
+
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="store_menu('hare');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="hare==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="store_menu('spartan');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;padding-top:8px;" no-padding>
+        <img src="assets/imgs/store-equipment/icons/ASUS_AC55U_Router.png" style="height:35px; width:25%">
+        <p no-padding no-margin style="font-weight:bold;">The Hare</p>
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="store_menu('tortoise');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="tortoise==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="store_menu('hare');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;padding-top:8px;" no-padding>
+        <img src="assets/imgs/store-equipment/icons/ASUS-N12-Router.png" style="height:35px; width:25%">
+        <p no-padding no-margin style="font-weight:bold;">The Tortoise</p>
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="store_menu('azul');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="azul==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="store_menu('tortoise');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;padding-top:8px;" no-padding>
+        <img src="assets/imgs/store-equipment/icons/netgear-gs108.png" style="height:35px; width:25%">
+        <p no-padding no-margin style="font-weight:bold;">The Azul</p>
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-right" class="fa-2x" color="light" (click)="store_menu('ethernet');"></fa-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="background:#46afd6; " *ngIf="ethernet==true" text-center>
+      <ion-col col-1>
+        <fa-icon name="caret-left" class="fa-2x" color="light" (click)="store_menu('azul');"></fa-icon>
+      </ion-col>
+      <ion-col style="color:#fff;padding-top:8px;" no-padding>
+        <img src="assets/imgs/store-equipment/icons/cat5.png" style="height:35px; width:25%">
+        <p no-padding no-margin style="font-weight:bold;">Ethernet Cables</p>
+      </ion-col>
+    </ion-row>
+
+
+    <!-- ###################################
+         ##  Content of Store Selection  ##
+         ################################## -->
+
+    <!-- Store -> Extreme Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="extreme==true">
+      <ion-row padding-left padding-right text-center>
+        <ion-col>
+          <img src="assets/imgs/store-equipment/ASUS_AC68U_Router_480x388.png">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">The Extreme
+            <img src="assets/imgs/store-equipment/the_extreme_96x96.png" style="height:20px;">
+          </p>
+          <p no-padding no-margin style="font-weight:bold">ASUS RT-AC68U Wireless-AC1900 Gigabit Router</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col no-padding text-center>
+          <ion-badge color="warning">Add</ion-badge>
+        </ion-col>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold;">$221.00</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin>The Asus RT-AC68U is the world's fastest Wi-Fi router, with combined dual-band data rates of upto 1900 Mbps. Powered
+            by a dual-core processor and features dual USB ports for ..</p>
+          <p>
+            <button ion-button clear small>Learn More</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- International -> Korean Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="spartan==true">
+      <ion-row padding-left padding-right text-center>
+        <ion-col>
+          <img src="assets/imgs/store-equipment/ASUS_AC66U_Router.jpg">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">The Spartan
+            <img src="assets/imgs/store-equipment/the_spartan_96x96.png" style="height:20px;">
+          </p>
+          <p no-padding no-margin style="font-weight:bold">ASUS RT-AC68U Wireless-AC1900 Gigabit Router</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col no-padding text-center>
+          <ion-badge color="warning">Add</ion-badge>
+        </ion-col>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold;">$221.00</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin>The Asus RT-AC68U is the world's fastest Wi-Fi router, with combined dual-band data rates of upto 1900 Mbps. Powered
+            by a dual-core processor and features dual USB ports for ..</p>
+          <p>
+            <button ion-button clear small>Learn More</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- International -> Indian Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="hare==true">
+      <ion-row padding-left padding-right text-center>
+        <ion-col>
+          <img src="assets/imgs/store-equipment/ASUS_AC55U_Router.jpg">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">The Hare
+            <img src="assets/imgs/store-equipment/the_hare_96x96.png" style="height:20px;">
+          </p>
+          <p no-padding no-margin style="font-weight:bold">ASUS RT-AC68U Wireless-AC1900 Gigabit Router</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col no-padding text-center>
+          <ion-badge color="warning">Add</ion-badge>
+        </ion-col>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold;">$221.00</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin>The Asus RT-AC68U is the world's fastest Wi-Fi router, with combined dual-band data rates of upto 1900 Mbps. Powered
+            by a dual-core processor and features dual USB ports for ..</p>
+          <p>
+            <button ion-button clear small>Learn More</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- International -> Filipino Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="tortoise==true">
+      <ion-row padding-left padding-right text-center>
+        <ion-col>
+          <img src="assets/imgs/store-equipment/ASUS_N12_Router_500x500.jpg">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">The Tortoise
+            <img src="assets/imgs/store-equipment/the_tortoise_96x96.png" style="height:20px;">
+          </p>
+          <p no-padding no-margin style="font-weight:bold">ASUS RT-AC68U Wireless-AC1900 Gigabit Router</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col no-padding text-center>
+          <ion-badge color="warning">Add</ion-badge>
+        </ion-col>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold;">$221.00</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin>The Asus RT-AC68U is the world's fastest Wi-Fi router, with combined dual-band data rates of upto 1900 Mbps. Powered
+            by a dual-core processor and features dual USB ports for ..</p>
+          <p>
+            <button ion-button clear small>Learn More</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!-- International -> Russian Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="azul==true">
+      <ion-row padding-left padding-right text-center>
+        <ion-col>
+          <img src="assets/imgs/store-equipment/netgear-gs108.jpg">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">The Azul
+            <!-- <img src="assets/imgs/store-equipment/the_tortoise_96x96.png" style="height:20px;"> -->
+          </p>
+          <p no-padding no-margin style="font-weight:bold">ASUS RT-AC68U Wireless-AC1900 Gigabit Router</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col no-padding text-center>
+          <ion-badge color="warning">Add</ion-badge>
+        </ion-col>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold;">$221.00</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin>The Asus RT-AC68U is the world's fastest Wi-Fi router, with combined dual-band data rates of upto 1900 Mbps. Powered
+            by a dual-core processor and features dual USB ports for ..</p>
+          <p>
+            <button ion-button clear small>Learn More</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!-- International -> Russian Selection -->
+    <div class="section" style="margin-bottom:90px !important;" no-padding *ngIf="ethernet==true">
+      <ion-row padding-left padding-right text-center>
+        <ion-col>
+          <img src="assets/imgs/store-equipment/cat5.jpg">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold">Ethernet Cables
+            <!-- <img src="assets/imgs/store-equipment/the_tortoise_96x96.png" style="height:20px;"> -->
+          </p>
+          <p no-padding no-margin style="font-weight:bold">ASUS RT-AC68U Wireless-AC1900 Gigabit Router</p>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padiing-right>
+        <ion-col no-padding text-center>
+          <ion-badge color="warning">Add</ion-badge>
+        </ion-col>
+        <ion-col>
+          <p no-padding no-margin style="font-weight:bold;">$221.00</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-left padiing-right>
+        <ion-col>
+          <p no-padding no-margin>The Asus RT-AC68U is the world's fastest Wi-Fi router, with combined dual-band data rates of upto 1900 Mbps. Powered
+            by a dual-core processor and features dual USB ports for ..</p>
+          <p>
+            <button ion-button clear small>Learn More</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+
+  <div class="section" style="margin-bottom:100px;" no-padding *ngIf="checkout==true">
+    <ion-row padding-top text-center>
+      <ion-col no-padding>
+        <p no-padding no-margin style="font-weight:bold;font-size:16px;">Checkout</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row padding-top text-center>
+      <ion-col no-padding>
+        <p no-padding no-margin style="font-weight:bold;font-size:12px;">Sign Paperwork</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row paddig-left padding-right no-margin style="border-top: 1px solid #757474;border-bottom: 1px solid #757474;">
+      <ion-col no-padding no-margin col-4 style="background:#46afd6;">
+        <button ion-button padding-left no-margin clear color="light" (click)="openSignatureModel()">
+          <fa-icon name="pencil" color="light" padding-right></fa-icon> Create</button>
+      </ion-col>
+      <ion-col no-padding no-margin>
+        <img [src]="signatureImage" *ngIf="signatureImage" />
+        <p no-margin *ngIf="!signatureImage">Your Signature</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <img src="assets/imgs/symbol-dtv.svg" style="height:30px;width:30px;"> DIRECTV Agreement</ion-col>
+    </ion-row>
+    <ion-row paddig-left padding-right no-margin style="border-top: 1px solid #757474;border-bottom: 1px solid #757474;">
+      <ion-col no-padding no-margin col-4 style="background:#46afd6;">
+        <button ion-button padding-left no-margin clear color="light">
+          <fa-icon name="pencil-square-o" color="light" padding-right></fa-icon> Sign</button>
+      </ion-col>
+      <ion-col>
+        <img [src]="signatureImage" *ngIf="signatureImage" />
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <img src="assets/imgs/symbol-dtv.svg" style="height:30px;width:30px;"> DTN </ion-col>
+    </ion-row>
+    <ion-row paddig-left padding-right no-margin style="border-top: 1px solid #757474;border-bottom: 1px solid #757474;">
+      <ion-col no-padding no-margin col-4 style="background:#46afd6;">
+        <button ion-button padding-left no-margin clear color="light">
+          <fa-icon name="pencil-square-o" color="light" padding-right></fa-icon> Sign</button>
+      </ion-col>
+      <ion-col>
+        <img [src]="signatureImage" *ngIf="signatureImage" />
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <img src="assets/imgs/icons/favicon-32x32.png" style="height:90%;width:30px;"> Spartan-Net </ion-col>
+    </ion-row>
+    <ion-row paddig-left padding-right no-margin style="border-top: 1px solid #757474;border-bottom: 1px solid #757474;">
+      <ion-col no-padding no-margin col-4 style="background:#46afd6;">
+        <button ion-button padding-left no-margin clear color="light">
+          <fa-icon name="pencil-square-o" color="light" padding-right></fa-icon> Sign</button>
+      </ion-col>
+      <ion-col>
+        <img [src]="signatureImage" *ngIf="signatureImage" />
+      </ion-col>
+    </ion-row>
+
+    <ion-row padding-top>
+      <ion-col no-padding padding-left>
+        <p style="font-weight:bold;font-size:16px;text-align:center">Payment Information</p>
+        <p no-padding no-margin style="font-weight:bold;font-size:12px;">Billing Address</p>
+        <p no-padding no-margin>Alex Murphy</p>
+        <p no-padding no-margin>2300 Knob Hill Dr Okemos, MI 48864 Building 3 Unit 3-1</p>
+        <p noo-padding no-margin style="text-align:center;">
+          <button ion-button clear small no-padding no-margino-padding no-margin>
+            <fa-icon name="pencil-square-o"></fa-icon> Edit</button>
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="border-bottom: 2px solid #46afd6;">
+      <ion-col>
+        <ion-checkbox></ion-checkbox> Use card on file ending: ***9365
+      </ion-col>
+    </ion-row>
+    <form>
+      <ion-row padding-left padding-right style="border-bottom: 2px solid #46afd6;">
+        <ion-col no-padding no-margin>
+          <img src="assets/imgs/all_credit_card.png" style="width:100%">
+        </ion-col>
+      </ion-row>
+      <ion-item n padding-left padding-right style="border-bottom: 2px solid #46afd6;">
+        <ion-label floating>Card Number</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item padding-left padding-right style="border-bottom: 2px solid #46afd6;">
+        <ion-label floating>Month</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item padding-left padding-right style="border-bottom: 2px solid #46afd6;">
+        <ion-label floating>Year</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item padding-left padding-right style="border-bottom: 2px solid #46afd6;">
+        <ion-label floating>Card CVV</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <!-- <ion-col text-end>
+                <img src="">
+              </ion-col> -->
+      <ion-item padding-left padding-right style="border-bottom: 2px solid #46afd6;">
+        <ion-checkbox></ion-checkbox>
+        <ion-label>Enroll to Spartan-Net Autopay</ion-label>
+      </ion-item>
+      <ion-item padding-left padding-right style="border-bottom: 2px solid #46afd6;">
+        <ion-checkbox></ion-checkbox>
+        <ion-label> Enroll to DIRECTV Autopay</ion-label>
+      </ion-item>
+    </form>
+  </div>
+
+  <div *ngIf="signatureSection" style="position: absolute;z-index: 999999;top: 0;width: 80%;left: 10%;">
+    <ion-card no-padding>
+      <ion-card-header style="background:#46afd6;">
+        <p style="font-weight:bold;">Create Signature</p>
+      </ion-card-header>
+      <ion-card-content no-padding>
+        <ion-row>
+          <ion-col>
+            <p style="font-weight:bold;">Please sign within the signature area</p>
+          </ion-col>
+        </ion-row>
+        <signature-pad [options]="signaturePadOptions" id="signatureCanvas"></signature-pad>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-4>
+              <button ion-button full color="primary" (click)="drawCancel()">Cancel</button>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button full color="light" (click)="drawClear()">Clear</button>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button full color="secondary" (click)="drawComplete()">Done</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+  <button class="button-footer" ion-button block full large color="primary">
+    Save & Continue
+  </button>
+</ion-content>

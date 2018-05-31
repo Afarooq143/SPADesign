@@ -1,0 +1,73 @@
+<!--
+  Generated template for the CartsummaryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar class="cart-summary">
+    <ion-row>
+      <ion-col text-center col-2>
+        <fa-icon name="shopping-cart" color="dark" ></fa-icon>
+      </ion-col>
+      <ion-col>Your Cart
+        <fa-icon name="question-circle" color="primary"></fa-icon>
+      </ion-col>
+      <ion-col col-1 (click)="close()"><fa-icon name="times" color="dark" ></fa-icon></ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-left>
+  <div padding-left padding-right class="section">
+    <ion-row no-padding>
+      <ion-col  no-padding><p no-padding class="heading">Billed by Cedar Village Leasing Office</p> (included in your rent)*</ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col  >Base Package TV + Internet</ion-col>
+      <ion-col  class="heading"  col-4 >$80.00/mo</ion-col>
+    </ion-row>
+  </div>
+  <div padding-left padding-right class="section">
+    <ion-row padding-top>
+      <ion-col class="heading" no-padding>Billed by DIRECTV</ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col >DVR Service</ion-col>
+      <ion-col  class="heading"  col-4 >$10.00/mo</ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col >Whole Home DVR Service</ion-col>
+      <ion-col col-4  class="heading"  >$3.00/mo</ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col >Genie Receiver</ion-col>
+      <ion-col col-4 class="heading">$2.99/mo</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col  class="heading"  >DIRECTV TOTAL</ion-col>
+      <ion-col  class="heading"  col-4 >$13.00/mo</ion-col>
+    </ion-row>
+  </div>
+  <div padding-left padding-right class="section">
+    <ion-row padding-top>
+      <ion-col  class="heading"  no-padding>Spartan-NetmOne Time Fee</ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col >Activation Fee</ion-col>
+      <ion-col  class="heading"  col-4 >$20.00/mo</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col no-padding>Due at Checkout</ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col  class="heading"  >TOTAL</ion-col>
+      <ion-col  class="heading"  col-4 >$20.00/mo</ion-col>
+    </ion-row>
+  </div>
+  <ion-row no-margin-bottom padding-top>
+    <button ion-button full small style="margin: 0px;">Checkout</button>
+  </ion-row>
+</ion-content>

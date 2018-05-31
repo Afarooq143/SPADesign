@@ -1,0 +1,88 @@
+page-calender {
+    ion-calendar {
+        padding: 10px 20px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        display: inline-block;
+        background-color: #fff;
+        width: 100%;
+        .title {
+            padding: 0 40px 0 40px;
+            overflow: hidden;
+        }
+    }
+
+    ion-calendar-month {
+        display: inline-block;
+        width: 100%;
+    }
+
+    ion-calendar-month .days {
+        width: 14%;
+        float: left;
+        text-align: center;
+        height: 36px;
+        margin-bottom: 5px;
+    }
+
+    ion-calendar-month .primary .days .on-selected, ion-calendar-month .primary .endSelection button.days-btn, ion-calendar-month .primary .startSelection button.days-btn {
+        background-color: #488aff;
+        color: #fff;
+    }
+
+    ion-calendar-month .days .on-selected {
+        border: none;
+    }
+
+    ion-calendar-month button.days-btn {
+        border-radius: 36px;
+        width: 36px;
+        display: block;
+        margin: 0 auto;
+        padding: 0;
+        height: 36px;
+        background-color: transparent;
+        position: relative;
+        z-index: 2;
+    }
+
+    button {
+        border: 0;
+        font-family: inherit;
+        font-style: inherit;
+        font-variant: inherit;
+        line-height: 1;
+        text-transform: none;
+        cursor: pointer;
+        -webkit-appearance: button;
+    }
+
+    ion-calendar-month .primary .days .on-selected p {
+        color: #fff;
+    }
+
+    ion-calendar-month .days .on-selected p {
+        font-size: 1.3em;
+    }
+
+    ion-calendar-month button.days-btn p {
+        margin: 0;
+        font-size: 1.2em;
+        color: #333;
+    }
+
+    p {
+        display: block;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+    }
+
+    .today{
+       background: color($colors, primary) !important;
+       p{
+           color: color($colors, light) !important;
+       }
+    }
+}

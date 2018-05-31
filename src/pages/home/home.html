@@ -1,0 +1,347 @@
+
+
+<ion-header>
+  <ion-navbar color="white">
+    <ion-row no-padding>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <button ion-button menuToggle>
+          <fa-icon name="bars" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+        </button>
+      </ion-col>
+      <ion-col no-padding text-center style="border-bottom:none;">
+        <img src="assets/imgs/logo.svg" style="max-width:75%" />
+      </ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="bell" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="shopping-cart" color="primary" style="font-size: 25px; padding-top: 16px;" (click)="presentPopover($event)"></fa-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="section" *ngIf="statusBar==true">
+    <ion-row padding-left padding-right padding-top>
+      <ion-col>
+        <b>Order Status</b>
+      </ion-col>
+      <ion-col col-1>
+        <fa-icon name="caret-down" class="fa-2x" (click)="toggle(activeClass=1)" color="dark" [ngClass]="{activeDrop: activeClass === 1}"></fa-icon>
+      </ion-col>
+    </ion-row>
+    <div class="header" *ngIf="show==true" style="background:#e4e4e4 ">
+      <ion-row class="activeBar" padding [ngClass]="{active: isActive('order')}">
+        <ion-col col-1 class="status-bar" [style.background-color]="orderDone? '#46afd6': '#2e2e2e'" style="border-radius:50px;"></ion-col>
+        <ion-col col-2 padding-left padding-right>
+          <fa-icon name="check-square-o" class="fa-2x"></fa-icon>
+        </ion-col>
+        <ion-col (click)="menu('order');" style="color:#46afd6">Order Received
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row padding class="menu menu-header" [ngClass]="{active: isActive('internet')}">
+        <ion-col col-1 class="status-bar activeBar" [style.background-color]="internetDone? '#46afd6': '#2e2e2e'"></ion-col>
+        <ion-col col-1 padding-left padding-right>
+          <fa-icon name="dribbble" class="fa-2x"></fa-icon>
+        </ion-col>
+        <ion-col col-1>
+          <fa-icon name="wifi" class="fa-2x"></fa-icon>
+        </ion-col>
+        <ion-col (click)="menu('internet');" style="color:#46afd6">Setting Up Internet & WiFi
+        </ion-col>
+        <ion-col col-1>
+          <fa-icon name="exclamation-circle" style="color:#f53d3d !important"></fa-icon>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding class="menu menu-header" [ngClass]="{active: isActive('directv')}">
+        <ion-col col-1 class="status-bar activeBar" [style.background-color]="directvDone? '#46afd6': '#2e2e2e'"></ion-col>
+        <ion-col col-2 padding-left padding-right>
+          <fa-icon name="dribbble" class="fa-2x" color="dark"></fa-icon>
+        </ion-col>
+        <ion-col (click)="menu('directv');" color="dark">Activating Your DIRECTV Account
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding class="menu menu-header" [ngClass]="{active: isActive('install')}">
+        <ion-col class="activeBar" col-1 [style.background-color]="installDone? '#46afd6': '#2e2e2e'" style="border-radius:50px;"></ion-col>
+        <ion-col col-2 padding-left padding-right>
+          <fa-icon name="calendar" class="fa-2x" color="dark"></fa-icon>
+        </ion-col>
+        <ion-col (click)="menu('install');" color="dark">DIRECTV Installation
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <div class="section" *ngIf="order==true">
+    <ion-card no-padding>
+      <ion-row *ngIf="viewDetail==true">
+        <ion-col>
+          <fa-icon name="caret-left" color="dark" class="fa-2x" (click)="changeStatus('order');"></fa-icon>
+        </ion-col>
+      </ion-row>
+      <div margin style="background:#e4e4e4;" class="chatBubble">
+        <div class="chat-bubble">
+          <div class="message" padding>
+            <p class="bold-text">We received your Order#123445</p>
+          </div>
+        </div>
+      </div>
+      <ion-row>
+        <ion-col>
+          <img src="assets/imgs/fiberbot-body.svg" class="fiberbot-animated shadow">
+        </ion-col>
+        <ion-col>
+          <button style="width:100% !important;" class="button-footer" ion-button small color="primary">
+            Edit Order
+          </button>
+          <button style="width:100% !important;" class="button-footer" ion-button small color="primary">
+            View Order
+          </button>
+          <button style="width:100% !important;" class="button-footer" ion-button small color="primary">
+            Print Order
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+  </div>
+
+  <div class="section" *ngIf="internet==true">
+    <ion-card no-padding>
+      <ion-row *ngIf="viewDetail==true">
+        <ion-col>
+          <fa-icon name="caret-left" color="dark" class="fa-2x" (click)="changeStatus('internet');"></fa-icon>
+        </ion-col>
+      </ion-row>
+      <div margin style="background:#e4e4e4;" class="chatBubble">
+        <div class="chat-bubble">
+          <div class="message" padding>
+            <p class="bold-text">We are configuring and installing your Fiber Internet & WiFi</p>
+            <p class="bold-text">
+              <a href="">How to connect to your Fiber Internet</a>
+            </p>
+            <p class="bold-text">
+              <a href="">How to connect to cross-connect</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <ion-row>
+        <ion-col >
+          <img src="assets/imgs/fiberbot-body.svg" >
+        </ion-col>
+        <ion-col text-center>
+          <fa-icon name="globe" class="fa-5x" style="padding-top:30%"></fa-icon>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+  </div>
+
+  <div class="section" *ngIf="directv==true">
+    <ion-card no-padding>
+      <ion-row *ngIf="viewDetail==true">
+        <ion-col>
+          <fa-icon name="caret-left" color="dark" class="fa-2x" (click)="changeStatus('directv');"></fa-icon>
+        </ion-col>
+      </ion-row>
+      <div margin style="background:#e4e4e4;" class="chatBubble">
+        <div class="chat-bubble">
+          <div class="message" padding>
+            <p>We are activating your DIRECTV account</p>
+          </div>
+        </div>
+      </div>
+      <ion-row>
+        <ion-col>
+          <img src="assets/imgs/fiberbot-body.svg" class="fiberbot-animated shadow">
+        </ion-col>
+        <ion-col>
+          <fa-icon name="desktop" class="fa-5x"></fa-icon>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+  </div>
+
+  <div class="section" *ngIf="install==true">
+    <ion-card no-padding>
+      <ion-row *ngIf="viewDetail==true">
+        <ion-col >
+          <fa-icon name="caret-left" color="dark" class="fa-2x" (click)="changeStatus('install');"></fa-icon>
+        </ion-col>
+      </ion-row>
+      <div margin style="background:#e4e4e4;" class="chatBubble">
+        <div class="chat-bubble">
+          <div class="message" padding>
+            <p>
+              <fa-icon name="user-circle-o" class="fa-2x"></fa-icon>Brandon we will be installing your DIRECTV service on
+              <ion-badge>Nov 15</ion-badge>12pm-2pm</p>
+          </div>
+        </div>
+      </div>
+      <ion-row padding-left padding-right>
+        <ion-col padding-left padding-right>
+          <img src="assets/imgs/fiberbot-body.svg" class="fiberbot-animated shadow">
+        </ion-col>
+      </ion-row>
+      <ion-row padding-left padding-right>
+        <ion-col padding-left padding-right>
+          <a href="">I want to reschedule or change to pickup</a>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+
+  <div *ngIf="main_content==true">
+    <ion-card>
+      <ion-card-header class="heading">
+        Billing Overview
+      </ion-card-header>
+      <ion-card-content no-padding>
+        <ion-row no-padding text-center>
+          <ion-col>
+            <p style="font-weight:bold;font-size:22px;color:#46afd6;">$0.
+              <sup>00</sup>
+            </p>
+            <span style="font-size:12px;">Total Outstanding</span>
+
+            <p>
+              <button ion-button small>Make a Payment</button>
+            </p>
+
+            <ion-row no-padding no-margin>
+
+              <ion-col text-center>
+                <div style="float: left;height: 100%;border: 4px solid #46afd6;width: 23%;;border-radius: 100%;padding: 5px;margin-left: 15%;">
+                  <b>30</b>
+                  <p style="font-size: 10px;">Days Left</p>
+                </div>
+                <div style="width: 85%;">
+                  <p style="font-weight:bold">Due Date</p>
+                  <p style="font-size:12px;">August 15, 2017</p>
+                </div>
+              </ion-col>
+              <!-- <ion-col no-padding no-margin><img style="height:30px; width:30px;margin: 0 auto" src="assets/imgs/app-directv.png"></ion-col>
+              <ion-col no-padding no-margin>Due Date</ion-col> -->
+            </ion-row>
+            <p style="font-weight:bold">Last Payment: $0:00</p>
+            <p style="font-weight:bold">Current Balance: $0:00</p>
+            <p style="font-weight:bold">Overdue Balance: $0:00</p>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+      <ion-row>
+        <ion-col text-center>
+          <button clear style="color:#46afd6; background:white;">View Transaction History</button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+
+    <ion-card>
+      <ion-card-header class="heading">
+        DIRECTV
+      </ion-card-header>
+      <ion-card-content no-padding>
+        <ion-row no-padding>
+          <ion-col col-5 text-center>
+            <img style="height:50px; width:50px;margin: 0 auto" src="assets/imgs/app-directv.png">
+            <p style="font-weight:bold;">App</p>
+            <button clear style="color:#46afd6; background:white;">Download App</button>
+            <!-- <button ion-button small>DIRECTV Login</button> -->
+            <ion-badge>DIRECTV Login</ion-badge>
+          </ion-col>
+          <ion-col no-padding>
+            <img src="assets/imgs/directv-img.png">
+            <p wrap>
+              Enjoy amazing mobile apps manage your account from anywhere signup for paperless billing and so much more!
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header class="heading">
+        DIRECTV
+      </ion-card-header>
+      <ion-card-content no-padding>
+        <ion-row no-padding>
+          <ion-col col-7>
+            <ion-icon name="ios-wifi" style="font-size:50px;color:#46afd6"></ion-icon>
+            <!-- <img style="height:50px; width:50px;" src="assets/imgs/app-directv.png"> -->
+            <p style="font-weight:bold;">No WiFi Devices Registered</p>
+
+          </ion-col>
+          <ion-col no-padding text-right>
+            <button ion-button small>Add</button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header class="heading">
+        Support Tickets
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row text-center>
+          <ion-col no-padding col-2>Tickets</ion-col>
+          <ion-col no-padding col-3>Completed</ion-col>
+          <ion-col></ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+        <ion-row text-center>
+          <ion-col no-padding col-2>
+            <ion-badge>
+              <p style="color:#fff;font-weight:bold;">0</p>
+              <p style="font-size:9px;color:#fff;">Test</p>
+            </ion-badge>
+          </ion-col>
+          <ion-col no-padding col-2>
+            <ion-badge>
+              <p style="color:#fff;font-weight:bold;">0</p>
+              <p style="font-size:9px;color:#fff;">Test</p>
+            </ion-badge>
+          </ion-col>
+          <ion-col no-padding text-center>
+            <!-- <img style="height:20px; width:20px;margin: 0 auto;" src="assets/imgs/app-directv.png"> -->
+            <ion-icon name="ios-contact" style="font-size:25px;"></ion-icon>
+            <p>Joel Alcantara</p>
+          </ion-col>
+          <ion-col no-padding>
+            <ion-badge>Create Ticket</ion-badge>
+          </ion-col>
+        </ion-row>
+        <ion-row text-center>
+          <ion-col no-padding col-2>
+            <ion-badge>
+              <p style="color:#fff;font-weight:bold;">0</p>
+              <p style="font-size:9px;color:#fff;">Test</p>
+            </ion-badge>
+          </ion-col>
+          <ion-col no-padding col-2>
+            <ion-badge>
+              <p style="color:#fff;font-weight:bold;">0</p>
+              <p style="font-size:9px;color:#fff;">Test</p>
+            </ion-badge>
+          </ion-col>
+          <ion-col no-padding text-center>
+            <!-- <img style="height:20px; width:20px;margin: 0 auto;" src="assets/imgs/app-directv.png"> -->
+            <ion-icon name="ios-contact" style="font-size:25px;"></ion-icon>
+            <p>Alexa Alcantara</p>
+          </ion-col>
+          <ion-col no-padding>
+            <ion-badge>Create Ticket</ion-badge>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

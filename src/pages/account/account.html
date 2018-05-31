@@ -1,0 +1,742 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-row no-padding>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <button ion-button menuToggle>
+          <fa-icon name="bars" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+        </button>
+      </ion-col>
+      <ion-col no-padding text-center style="border-bottom:none;">
+        <img src="assets/imgs/logo.svg" style="max-width:75% !important" />
+      </ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="bell" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+      <ion-col col-2 no-padding style="border-bottom:none">
+        <fa-icon name="shopping-cart" color="primary" style="font-size: 25px; padding-top: 16px;"></fa-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-bounce class="background">
+  <!-- <ion-grid> -->
+  <!-- <ion-row  no-padding>
+      <ion-col> -->
+  <ion-row class="header-tab" style="background:#e4e4e4" text-center>
+    <!-- <ion-col no-padding [class.active]="profile" [ngClass]="{'active': selected == profile}"> -->
+    <ion-col no-padding [ngClass]="{active: isActive('profile')}">
+      <button style="width:100%;height:100%;background:none;padding-top:5px;padding-bottom:3px;" (click)="menu('profile');">
+        <fa-icon name="user" color="primary" class="fa-2x"></fa-icon>
+        <p text-wrap style="margin-bottom: 0px;padding: 0px;font-size: 12px;">Profile Information</p>
+      </button>
+    </ion-col>
+    <ion-col no-padding [ngClass]="{active: isActive('location')}">
+      <button style="width:100%;height:100%;background:none;padding-top:5px;padding-bottom:3px;" (click)="menu('location')">
+        <fa-icon name="building-o" color="primary" class="fa-2x"></fa-icon>
+        <p text-wrap style="margin-bottom: 0px;padding: 0px;font-size: 12px;">Location Information</p>
+      </button>
+    </ion-col>
+    <ion-col no-padding [ngClass]="{active: isActive('users')}">
+      <button style="width:100%;height:100%; background:none;padding-top:5px;padding-bottom:3px;" (click)="menu('users')">
+        <fa-icon name="users" color="primary" class="fa-2x"></fa-icon>
+        <p text-wrap style=" margin-bottom: 0px;padding: 0px;font-size: 12px;">Additional Users</p>
+      </button>
+    </ion-col>
+    <ion-col no-padding [ngClass]="{active: isActive('payment')}">
+      <button style="width:100%;height:100%; background:none;padding-top:5px;padding-bottom:3px;" (click)="menu('payment')">
+        <fa-icon name="credit-card" color="primary" class="fa-2x"></fa-icon>
+        <p text-wrap style=" margin-bottom: 0px;padding: 0px;font-size: 12px;">Payment Information</p>
+      </button>
+    </ion-col>
+  </ion-row>
+  <div class="section" *ngIf="confirmation==true">
+    <ion-card padding>
+      <ion-card-header padding>
+        <p>Profile Confirmation
+          <fa-icon name="question-circle" color="primary"></fa-icon>
+        </p>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row text-center>
+          <ion-col no-padding-right>
+            <div class="profile-percent" style="border: 5px solid #e4e4e4;border-radius: 100%;width: 92px;height: 90px;border-right-color: #46afd6;border-top-color: #46afd6;transform: rotate(48deg);">
+              <fa-icon name="user" color="primary" class="fa-5x" style="transform: rotate(-48deg);"></fa-icon>
+            </div>
+          </ion-col>
+          <ion-col no-padding-left>
+            <p style="font-size:30px;font-weight:bold;color:#46afd6;padding-top: 20%;">50%</p>
+          </ion-col>
+        </ion-row>
+        <ion-row padding>
+          <ion-list no-lines class="profile">
+            <ion-item>
+              <p style="color:#46afd6">
+                <fa-icon name="check" color="primary"></fa-icon>Profile Information</p>
+            </ion-item>
+            <ion-item>
+              <p style="color:#46afd6">
+                <fa-icon name="check" color="primary"></fa-icon>Location Information</p>
+            </ion-item>
+            <ion-item>
+              <p>Additional Users</p>
+            </ion-item>
+            <ion-item>
+              <p>Payment Information</p>
+            </ion-item>
+          </ion-list>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+
+  <div class="section" *ngIf="profile==true">
+    <ion-card padding>
+      <ion-card-header padding>
+        <p style="font-weight:bold">Welcome Joel, Let's get started</p>
+        <p>Profile Information
+          <fa-icon name="question-circle"></fa-icon>
+        </p>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item class="no-border">
+          <ion-avatar item-start>
+            <fa-icon name="user" class="fa-4x"></fa-icon>
+            <!-- <img src="assets/imgs/logo.png"> -->
+          </ion-avatar>
+          <button ion-button clear small (click)="getImage()">
+            <fa-icon name="upload"></fa-icon> Change Avtar</button>
+        </ion-item>
+        <ion-item *ngIf="imageFileName">
+          <h4>Preview</h4>
+          <img src="{{imageFileName}}"  alt="User Avtar" width="40" height="40" />
+        </ion-item>
+        <!-- <div text-center class="heading">
+          <label>Profile</label>
+        </div> -->
+        <form padding class="form">
+          <ion-list no-padding>
+            <ion-item no-padding>
+              <ion-label floating>First Name</ion-label>
+              <ion-input no-margin type="text"></ion-input>
+            </ion-item>
+            <ion-item no-padding>
+              <ion-label floating>Last Name</ion-label>
+              <ion-input no-margin type="text"></ion-input>
+            </ion-item>
+            <ion-item no-padding>
+              <ion-label floating>Phone</ion-label>
+              <ion-input no-margin type="text"></ion-input>
+            </ion-item>
+            <ion-item no-padding>
+              <ion-label floating>Email</ion-label>
+              <ion-input no-margin type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Date of Birth</ion-label>
+              <ion-datetime padding type="text"></ion-datetime>
+            </ion-item>
+          </ion-list>
+          <!-- <div class="sub-heading">
+            <label>Security Information</label>
+          </div> -->
+          <ion-item no-padding>
+            <ion-label floating>Security Question</ion-label>
+            <ion-select no-padding>
+              <!-- <ion-option>Select</ion-option> -->
+              <ion-option>Abc</ion-option>
+              <ion-option>Def</ion-option>
+              <ion-option>Dhij</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-padding>
+            <ion-label floating>Security Answer</ion-label>
+            <ion-input no-margin type="text"></ion-input>
+          </ion-item>
+          <!-- <div text-center class="heading">
+            <label>Communications</label>
+          </div> -->
+
+          <ion-item no-padding>
+            <ion-label class="heading-label">How do you prefer to be contacted? </ion-label>
+          </ion-item>
+          <ion-row no-padding class="with-border">
+            <ion-col>
+              <ion-checkbox></ion-checkbox>
+              <label>SMS</label>
+            </ion-col>
+            <ion-col>
+              <ion-checkbox></ion-checkbox>
+              <label>Email</label>
+            </ion-col>
+            <ion-col>
+              <ion-checkbox></ion-checkbox>
+              <label>Call</label>
+            </ion-col>
+          </ion-row>
+
+          <ion-item no-padding>
+            <ion-label class="heading-label">Social Media Contact Preference</ion-label>
+          </ion-item>
+          <ion-row no-padding class="with-border">
+            <ion-col no-padding col-3>
+              <ion-checkbox tyle="float:left"></ion-checkbox>
+              <!-- <label>Facebook</label> -->
+              <img src="assets/imgs/facebook.png" style="height:35px;width:35px;float:right">
+            </ion-col>
+            <ion-col no-padding col-9>
+              <ion-input no-bounce class="custom-input" placeholder="Username" type="text"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row no-padding class="with-border">
+            <ion-col no-padding col-3>
+              <ion-checkbox tyle="float:left"></ion-checkbox>
+              <!-- <label>Hangouts</label> -->
+              <img src="assets/imgs/hangout.png" style="height:35px;width:35px;float:right">
+            </ion-col>
+            <ion-col no-padding col-9>
+              <ion-input class="custom-input" placeholder="Username" type="text"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-item no-padding>
+            <ion-label class="heading-label">Maintenance Notifications</ion-label>
+          </ion-item>
+          <ion-row no-padding class="with-border">
+            <ion-col>
+              <label>No</label>
+            </ion-col>
+            <ion-col>
+              <ion-toggle checked="true"></ion-toggle>
+            </ion-col>
+            <ion-col>
+              <label>Yes</label>
+            </ion-col>
+          </ion-row>
+
+          <ion-item no-padding>
+            <ion-label class="heading-label">Special Offers & Promotions</ion-label>
+          </ion-item>
+          <ion-row no-padding class="with-border">
+            <ion-col>
+              <label>No</label>
+            </ion-col>
+            <ion-col>
+              <ion-toggle checked="true"></ion-toggle>
+            </ion-col>
+            <ion-col>
+              <label>Yes</label>
+            </ion-col>
+          </ion-row>
+          <ion-item no-padding>
+            <ion-label class="heading-label">Account Notifications & Alerts</ion-label>
+          </ion-item>
+          <ion-row no-padding class="with-border">
+            <ion-col>
+              <label>No</label>
+            </ion-col>
+            <ion-col>
+              <ion-toggle checked="true"></ion-toggle>
+            </ion-col>
+            <ion-col>
+              <label>Yes</label>
+            </ion-col>
+          </ion-row>
+
+          <!-- <button style="margin-top: 7px; margin-left:30%;" text-center ion-button round medium>Save & Continue</button> -->
+          <button class="button-footer" ion-button block full large color="primary" disabled>
+            Save & Continue
+          </button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="section" *ngIf="location==true">
+    <ion-card no-padding>
+      <ion-card-header>
+        <p>Location Information
+          <fa-icon name="question-circle"></fa-icon>
+        </p>
+      </ion-card-header>
+      <ion-card-content>
+        <div text-center class="heading">
+          <label>Location</label>
+        </div>
+        <ion-item>
+          <ion-avatar item-start>
+            <fa-icon name="home" class="fa-2x"></fa-icon>
+            <!-- <img src="assets/imgs/logo.png"> -->
+          </ion-avatar>
+          <h2>Knobhill Apartments</h2>
+          <p text-wrap>2300 Knob Hill Dr Apt 06 Okemos, MI 64674</p>
+
+        </ion-item>
+        <ion-row>
+          <ion-col col-2 no-padding text-center>
+            <fa-icon name="phone"></fa-icon>
+            <!-- <fa-icon name="phone"></fa-icon> -->
+          </ion-col>
+          <ion-col no-padding>
+            <button no-margin clear small class="plain-button" style="background-color:#fff !important">Phone (666) 876 9877</button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-2 no-padding text-center>
+            <fa-icon name="link"></fa-icon>
+          </ion-col>
+          <ion-col no-padding>
+            <button no-margin clear small class="plain-button" style="background-color:#fff !important">www.knobhill.com</button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="with-border" no-margin>
+          <ion-col col-2 no-padding text-center>
+            <fa-icon name="envelope"></fa-icon>
+          </ion-col>
+          <ion-col no-padding>
+            <button no-margin clear small class="plain-button" style="background-color:#fff !important">Email Leasing Office</button>
+          </ion-col>
+        </ion-row>
+        <form class="form">
+          <ion-list no-padding>
+            <ion-item no-padding>
+              <ion-label floating>Building</ion-label>
+              <ion-select style="max-width: 100% !important;">
+                <ion-option>Abc</ion-option>
+                <ion-option>Def</ion-option>
+                <ion-option>Dhij</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item no-padding>
+              <ion-label floating>Unit</ion-label>
+              <ion-select style="max-width: 100% !important;">
+                <ion-option>Abc</ion-option>
+                <ion-option>Def</ion-option>
+                <ion-option>Dhij</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item no-padding>
+              <ion-label floating>Move in Date?</ion-label>
+              <ion-datetime no-margin type="text"></ion-datetime>
+            </ion-item>
+
+            <ion-item no-padding>
+              <ion-label floating>How long is your lease?</ion-label>
+              <ion-select no-margin style="max-width: 100% !important;">
+                <ion-option>Abc</ion-option>
+                <ion-option>Def</ion-option>
+                <ion-option>Dhij</ion-option>
+              </ion-select>
+            </ion-item>
+            <!-- <ion-row>
+              <ion-col>
+                <button block text-center ion-button round medium>Skip</button>
+              </ion-col>
+              <ion-col>
+                <button block text-center ion-button round medium>Save & Continue</button>
+              </ion-col>
+            </ion-row> -->
+            <ion-row>
+              <ion-col col-4>
+                <button  class="button-footer-skip" ion-button block full large color="primary" >
+                  Skip
+                </button>
+              </ion-col>
+              <ion-col col-8>
+                <button  class="button-footer-save" ion-button block  large color="primary" disabled>
+                  Save & Continue
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-list>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="section" *ngIf="users==true">
+    <ion-card no-padding>
+      <ion-card-header>
+        <p>Invite New User
+          <fa-icon name="question-circle"></fa-icon>
+        </p>
+      </ion-card-header>
+      <ion-card-content>
+        <div text-center class="heading">
+          <label>Add User or Occupants</label>
+        </div>
+        <form class="form">
+          <ion-list no-padding>
+            <ion-item no-padding>
+              <ion-label floating>First Name</ion-label>
+              <ion-input no-margin type="text"></ion-input>
+            </ion-item>
+
+            <ion-item no-padding>
+              <ion-label floating>Last Name</ion-label>
+              <ion-input no-margin type="text"></ion-input>
+            </ion-item>
+
+            <ion-item no-padding>
+              <ion-label floating>Phone</ion-label>
+              <ion-input no-margin type="text"></ion-input>
+            </ion-item>
+
+            <ion-item no-padding>
+              <ion-label floating>Email</ion-label>
+              <ion-input no-margin type="text"></ion-input>
+            </ion-item>
+            <ion-row no-padding class="with-border">
+              <ion-col>
+                <label>Standard</label>
+              </ion-col>
+              <ion-col>
+                <ion-toggle checked="false"></ion-toggle>
+              </ion-col>
+              <ion-col>
+                <label>Admin</label>
+              </ion-col>
+              <ion-col col-1>
+                <fa-icon name="question-circle"></fa-icon>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-item no-padding>
+              <ion-label class="heading-label">Do you have roommates? </ion-label>
+            </ion-item>
+            <ion-row no-padding class="with-border">
+              <ion-col>
+                <label>No</label>
+              </ion-col>
+              <ion-col>
+                <ion-toggle checked="true"></ion-toggle>
+              </ion-col>
+              <ion-col>
+                <label>Yes</label>
+              </ion-col>
+            </ion-row>
+            <button style="margin-top: 7px; margin-left:30%;" text-center ion-button round medium>Send Invite</button>
+          </ion-list>
+        </form>
+
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <div padding text-center class="heading">
+          <label>Invited Users</label>
+        </div>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="invited-users">
+
+          <ion-card padding style="margin: 7px !important;">
+            <ion-card-header no-padding>
+              <ion-row no-padding>
+                <ion-col>
+                  <label class="heading-label"> Status
+                    <ion-badge item-end>Pending</ion-badge>
+                  </label>
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col>
+                  <label class="heading-label">Invite sent: 12-12-2017 1:00pm</label>
+                </ion-col>
+              </ion-row>
+            </ion-card-header>
+            <ion-card-content no-padding>
+              <ion-row no-padding>
+                <ion-col>
+                  Joel
+                </ion-col>
+                <ion-col>
+                  Alcantara
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col>
+                  (656) 786 - 9876
+                </ion-col>
+                <ion-col>
+                  joel@gmail.com
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+            <ion-card-header no-padding>
+              <ion-row>
+                <ion-col no-padding>
+                  <label class="heading-label">Admin</label>
+                </ion-col>
+                <ion-col no-padding>
+                  <button ion-button clear>Re-send Invitation</button>
+                </ion-col>
+              </ion-row>
+            </ion-card-header>
+          </ion-card>
+
+          <ion-card padding style="margin: 7px !important;">
+            <ion-card-header no-padding>
+              <ion-row no-padding>
+                <ion-col>
+                  <label class="heading-label"> Status
+                    <ion-badge item-end color="secondary">Approved</ion-badge>
+                  </label>
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col>
+                  <label class="heading-label">Invite sent: 12-12-2017 1:00pm</label>
+                </ion-col>
+              </ion-row>
+            </ion-card-header>
+            <ion-card-content paddong-bottom>
+              <ion-row no-padding>
+                <ion-col>
+                  Joel
+                </ion-col>
+                <ion-col>
+                  Alcantara
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col>
+                  (656) 786 - 9876
+                </ion-col>
+                <ion-col>
+                  joel@gmail.com
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+            <ion-card-header no-padding>
+              <ion-row>
+                <ion-col no-padding>
+                  <label class="heading-label">Admin</label>
+                </ion-col>
+                <ion-col no-padding>
+                  <button ion-button clear>Re-send Invitation</button>
+                </ion-col>
+              </ion-row>
+            </ion-card-header>
+          </ion-card>
+          <ion-card padding style="margin: 7px !important;">
+            <ion-card-header no-padding>
+              <ion-row no-padding>
+                <ion-col>
+                  <label class="heading-label"> Status
+                    <ion-badge item-end color="danger">Declined</ion-badge>
+                  </label>
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col>
+                  <label class="heading-label">Invite sent: 12-12-2017 1:00pm</label>
+                </ion-col>
+              </ion-row>
+            </ion-card-header>
+            <ion-card-content no-padding>
+              <ion-row no-padding>
+                <ion-col>
+                  Joel
+                </ion-col>
+                <ion-col>
+                  Alcantara
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col>
+                  (656) 786 - 9876
+                </ion-col>
+                <ion-col>
+                  joel@gmail.com
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+            <ion-card-header no-padding>
+              <ion-row>
+                <ion-col no-padding>
+                  <label class="heading-label">Admin</label>
+                </ion-col>
+                <ion-col no-padding>
+                  <button ion-button clear>Re-send Invitation</button>
+                </ion-col>
+              </ion-row>
+            </ion-card-header>
+          </ion-card>
+          <ion-row>
+            <ion-col col-4>
+              <button middle  class="button-footer-skip" ion-button block full large color="primary" >
+                Skip
+              </button>
+            </ion-col>
+            <ion-col col-8>
+              <button middle  class="button-footer-save" ion-button block full large color="primary" disabled>
+                Save & Continue
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="section" *ngIf="payment==true">
+    <ion-card no-padding>
+      <ion-card-header>
+        <p>Payment Information
+          <fa-icon name="question-circle"></fa-icon>
+        </p>
+      </ion-card-header>
+      <ion-card-content>
+        <div padding text-center class="heading">
+          <label>Billing Information</label>
+        </div>
+        <ion-list no-padding>
+          <ion-item no-padding>
+            <ion-label class="heading-label">Use existing location</ion-label>
+            <ion-checkbox checked="true"></ion-checkbox>
+          </ion-item>
+          <form class="form">
+            <ion-list no-padding>
+              <ion-item no-padding>
+                <ion-label floating>First Name</ion-label>
+                <ion-input no-margin type="text"></ion-input>
+              </ion-item>
+
+              <ion-item no-padding>
+                <ion-label floating>Last Name</ion-label>
+                <ion-input no-margin type="text"></ion-input>
+              </ion-item>
+
+              <ion-item no-padding>
+                <ion-label floating>Address </ion-label>
+                <ion-input no-margin type="text"></ion-input>
+              </ion-item>
+
+              <ion-item no-padding>
+                <ion-label floating>City</ion-label>
+                <ion-input no-margin type="text"></ion-input>
+              </ion-item>
+
+              <ion-item no-padding>
+                <ion-label floating>State</ion-label>
+                <ion-select no-padding>
+                  <ion-option>MI</ion-option>
+                  <ion-option>CA</ion-option>
+                  <ion-option>CL</ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item no-padding>
+                <ion-label floating>Zip Code</ion-label>
+                <ion-input no-margin type="text"></ion-input>
+              </ion-item>
+              <div text-center class="heading">
+                <label>Card Information</label>
+              </div>
+              <ion-item no-padding>
+                <ion-label>
+                  <img src="assets/imgs/all_credit_card.png">
+                </ion-label>
+              </ion-item>
+              <ion-item no-padding>
+                <ion-label floating>Name on Card</ion-label>
+                <ion-input no-margin type="text"></ion-input>
+              </ion-item>
+              <ion-item no-padding>
+                <ion-label floating>Number</ion-label>
+                <ion-input no-margin type="text"></ion-input>
+              </ion-item>
+              <ion-item no-padding>
+                <ion-label fixed style=" width: 65px; min-width:65px;max-width: 65px;">Exp.</ion-label>
+                <ion-select no-margin placeholder="Month">
+                  <ion-option value="01">January</ion-option>
+                  <ion-option value="02">February</ion-option>
+                  <ion-option value="03">March</ion-option>
+                  <ion-option value="04">April</ion-option>
+                  <ion-option value="05">May</ion-option>
+                  <ion-option value="06">June</ion-option>
+                  <ion-option value="07">July</ion-option>
+                  <ion-option value="08">August</ion-option>
+                  <ion-option value="09">September</ion-option>
+                  <ion-option value="10">October</ion-option>
+                  <ion-option value="11">November</ion-option>
+                  <ion-option value="12" checked="true">December</ion-option>
+                </ion-select>
+                <ion-select no-margin placeholder="Year">
+                  <ion-option>1989</ion-option>
+                  <ion-option>1990</ion-option>
+                  <ion-option>1991</ion-option>
+                  <ion-option>1992</ion-option>
+                  <ion-option>1993</ion-option>
+                  <ion-option checked="true">1994</ion-option>
+                  <ion-option>1995</ion-option>
+                  <ion-option>1996</ion-option>
+                  <ion-option>1997</ion-option>
+                  <ion-option>1998</ion-option>
+                  <ion-option>1999</ion-option>
+                </ion-select>
+              </ion-item>
+              <ion-item no-padding>
+                <ion-label floating>CVV</ion-label>
+                <ion-input no-margin type="text"></ion-input>
+              </ion-item>
+              <!-- <ion-item >
+                  <ion-label floating>Date</ion-label>
+                <ion-datetime   type="text"></ion-datetime>
+              </ion-item> -->
+              <!-- <ion-item no-padding>
+                <button ion-button (click)="datepicker()">Date</button>
+              </ion-item> -->
+              <ion-row>
+                <ion-col col-4>
+                  <button  class="button-footer-skip" ion-button block full large color="primary" >
+                    Skip
+                  </button>
+                </ion-col>
+                <ion-col col-8>
+                  <button  class="button-footer-save" ion-button block full large color="primary" disabled>
+                    Save & Continue
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-list>
+          </form>
+
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+  <div class="section" *ngIf="completed==true">
+    <ion-card no-padding>
+      <div margin style="background:#e4e4e4;" class="chatBubble">
+        <div class="chat-bubble">
+          <div class="message" padding>
+            <p> <b>Congratulations</b> your proﬁle is almost done. To turn on your service: <b>Need Help?</b> </p>
+            <b><a href="#">Package Helper</a></b>
+          </div>
+        </div>
+      </div>
+      <div padding-bottom>
+          <img src="assets/imgs/fiberbot-body.svg" class="fiberbot-animated shadow">
+      </div>
+      <ion-row>
+        <ion-col>
+            <button style="width:100% !important;" class="button-footer" ion-button block color="primary">
+              Start Your Order
+            </button>
+          </ion-col>
+        </ion-row>
+    </ion-card>
+  </div>
+
+
+</ion-content>
